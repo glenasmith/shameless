@@ -6,6 +6,7 @@ class Account {
 
 	String username
 	String password
+	String realName
 	boolean enabled
 	boolean accountExpired
 	boolean accountLocked

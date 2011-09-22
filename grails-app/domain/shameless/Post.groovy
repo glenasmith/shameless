@@ -10,6 +10,10 @@ class Post {
 	
 	Account account
 	
+	Set<String> getPictureIds() {
+		(pictures*.id).sort { a,b -> a <=> b} // sort in ascending ids
+	}
+	
 	static hasMany = [pictures:Picture]
 
     static constraints = {
