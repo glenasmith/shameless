@@ -16,11 +16,11 @@ class LameNavigationTagLib {
 				out << "passive"
 			}
 			out << "'>"
-			out << "<a href='" + g.createLinkTo(controller: link, action: 'index') + "'>${heading}</a>"
-			out << "</li>"
+			out << "<a href='" + g.createLink(controller: link) + "'>${heading}</a>"
+			out << "</li>\n"
 			
 		}
-		out << "</ul></div>"
+		out << "</ul></div>\n"
 		
 	}
 
