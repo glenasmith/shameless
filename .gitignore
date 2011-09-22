@@ -2,6 +2,8 @@
 *Db.properties
 *Db.script
 *.iml
+.eprj
+*.log
 .idea
 .settings
 .project

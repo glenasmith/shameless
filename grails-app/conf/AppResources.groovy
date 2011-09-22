@@ -31,5 +31,13 @@ modules = {
 		resource url:'/less/application.less', attrs: [type: 'css', rel: 'stylesheet/less']
 
     }
+    
+    backbone {
+    	dependsOn 'jquery'
+    	
+    	resource url:'/js/json2.js' // for old browsers
+    	resource url:'/js/underscore-min.js'
+    	resource url:'/js/backbone-min.js'
+    }
 
 }
