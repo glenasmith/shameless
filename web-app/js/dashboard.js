@@ -57,7 +57,6 @@ $(function() {
 	    },
 	    updatePost: function(event, ui) {
 	    	var newStatus = $("#status").val();
-	    	alert("Setting new status to " + newStatus );
 	    	this.model.set({status: newStatus });
 	    	this.model.save();
 	    },

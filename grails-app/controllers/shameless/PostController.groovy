@@ -9,12 +9,12 @@ class PostController {
 	// read = GET /collection[/id]
 	// update = PUT /collection/id
 	// delete = DELETE /collection/id
-	static allowedMethods = [create: "POST", read: "GET", update: "PUT", delete: "DELETE"]
+	//static allowedMethods = [save: "POST", show: "GET", update: "PUT", delete: "DELETE"]
 
-    def create() {
+    def save() {
     	println "Creating with: ${params}"
     	def account = Account.findByUsername("admin")
-    	def post = new Post(params)
+    	def post = new Post(params.post)
     	post.account = account
     	if (post.save()) {
     		render post as JSON
@@ -24,7 +24,7 @@ class PostController {
 		}
     }
     
-    def read() {
+    def show() {
     	println "Reading with: ${params}"
     	render Post.list() as JSON
     }
@@ -34,7 +34,8 @@ class PostController {
     	
     	def post = Post.get(params.id)
     	if (post) {
-    		post.properties['status'] = params
+    		println "New status is ${params.post.status}"
+    		post.properties['status'] = params.post.status
     		if (post.save()) {
     			render post as JSON
     		} else {

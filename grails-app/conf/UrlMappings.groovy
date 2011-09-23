@@ -2,9 +2,9 @@ class UrlMappings {
 
 	static mappings = {
 		
-		"/api/$id?"(controller:'post') {
-			action = [GET:"read",POST:"create",PUT:"update",DELETE:"delete"]
-		}
+		"/post/$id?"(resource:"post")
+		// You can do individual mappings but you then have to remember to
+		// use the parseRequest:true to this mapping here
 		
 		"/$controller/$action?/$id?"{
 			constraints {

@@ -19,6 +19,12 @@
       </div>
 
 		<%--
+		// Step 1 Refactor: Move this logic to a template
+		// Step 2 Refactor: Move this render to an ajax call with div replace of html
+		// Step 3 Refactor: Look at perils of hacking JS into it
+		// Step 4 Refactor: Replace all this with a backbone.js model/veiw/controller
+		// Step 5 Refactor: Get fancy with routers and back button
+		
       <div class="foods">
       	<g:each var="post" in="${recentPosts}">
       		
@@ -41,7 +47,7 @@
     </div>
 <script>
 	var POST = {
-		api: '<g:createLink controller="api"/>',
+		api: '<g:resource dir="post"/>',
 	}
 </script>
 
