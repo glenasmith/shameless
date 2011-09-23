@@ -29,7 +29,7 @@
       </div>
       
       <input type="button" name="Refresh" value="Refresh" id="bbRefresh"/>
-      <div id="bbfoods">
+      <div id="bbFoods">
       	
       </div>
       
