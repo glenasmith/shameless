@@ -36,6 +36,7 @@
       </div>
       --%>
       
+      <button name="addEntry" id="addEntry">Add Entry</button><br/>
       <table id="bbFoods">
       	
       	
