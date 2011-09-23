@@ -56,7 +56,9 @@ $(function() {
 	        
 	    },
 	    updatePost: function(event, ui) {
-	    	this.model.set("status", $("#status").val());
+	    	var newStatus = $("#status").val();
+	    	alert("Setting new status to " + newStatus );
+	    	this.model.set({status: newStatus });
 	    	this.model.save();
 	    },
 	    editPost: function() {
@@ -80,6 +82,7 @@ $(function() {
 					Cancel: function() {
 						$( this ).dialog( "close" );
 					}
+					
 				}
 			});
 			
