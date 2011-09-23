@@ -30,7 +30,7 @@ $(function() {
 
 	//View
     var PostView = Backbone.View.extend({
-    	tagName: "p",
+    	tagName: "tr",
     	
 	    events: {
 	        "click .delete": "deleteZone"
@@ -40,7 +40,10 @@ $(function() {
 	    },
 	    render: function () {
 	        //$(this.el).append($("#dns-zone-item-template").tmpl(this.model.toJSON()));
-	        $(this.el).append(this.model.get("status")).append("<p/>");
+	        //var rowTemplate = "<td> {{ status }} </td> <td> {{ dateCreated }} </td>\n";
+	        var rowTemplate = $("#rowTemplate").html();
+	        
+	        $(this.el).append(Mustache.to_html(rowTemplate, this.model.toJSON()));
 	        return this;
 	    },
 	    deleteZone: function () {
@@ -111,9 +114,9 @@ $(function() {
   
 
     // Start the backbone app
-    // window.App = new AppView;
     var postApp = new PostRouter;
-    
+
+	// And start all the magic....    
     Backbone.history.start();
     
 });

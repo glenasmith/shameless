@@ -29,9 +29,10 @@
       </div>
       
       <input type="button" name="Refresh" value="Refresh" id="bbRefresh"/>
-      <div id="bbFoods">
+      <table id="bbFoods">
       	
-      </div>
+      	
+      </table>
       
 
       
@@ -45,6 +46,11 @@
 		delete: '<g:createLink controller="post" action="delete"/>'
 	}
 </script>
+
+<script type="text/template" id="rowTemplate">	
+	<td> {{ status }}  </td> <td>  {{ dateCreated }}  </td> <td>WIN</td>
+</script>	
+
   </body>
 
 </html>
