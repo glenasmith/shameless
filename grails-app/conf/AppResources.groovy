@@ -39,5 +39,11 @@ modules = {
     	resource url:'/js/underscore-min.js'
     	resource url:'/js/backbone-min.js'
     }
+    
+    dashboard {
+    	dependsOn 'backbone'
+    	
+    	resource url:'/js/dashboard.js'
+    }
 
 }

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Home</title>
     <meta name="layout" content="main"/>
+    <r:require module="dashboard"/>
   </head>
 
   <body>
@@ -14,12 +15,16 @@
 
       <div id="masthead">
         <h1>SeeFoodDiet</h1>
-        <p>The Visual Food Diary that will change your life</p>
+        <p>We are what you eat!</p>
       </div>
 
       <div class="foods">
       	<g:each var="post" in="${recentPosts}">
-      		${post.status} ${post.dateCreated}<br/>
+      		
+      		<g:each var="picId" in="${post.pictureIds}">
+      			<img src='<g:createLink controller="dashboard" action="renderImage" id="${picId}"/>' style="width: 100px;" title="${post.status} ${post.dateCreated} "/>
+      		</g:each>
+      		
       	</g:each>
       </div>
 

@@ -1,9 +1,4 @@
 $(function() {
-	
-	// change underscore.js to use mustache style templates
-	_.templateSettings = {
-		interpolate : /\{\{(.+?)\}\}/g
-	};
 
     // Model
     window.Post = Backbone.Model.extend({
