@@ -40,15 +40,12 @@
     </div>
 <script>
 	var POST = {
-		create: '<g:createLink controller="post" action="create"/>',
-		read: '<g:createLink controller="post" action="read"/>',
-		update: '<g:createLink controller="post" action="update"/>',
-		delete: '<g:createLink controller="post" action="delete"/>'
+		api: '<g:createLink controller="api"/>',
 	}
 </script>
 
 <script type="text/template" id="rowTemplate">	
-	<td> {{ status }}  </td> <td>  {{ dateCreated }}  </td> <td>WIN</td>
+	<td> {{ status }}  </td> <td>  {{ dateCreated }}  </td> <td>WIN</td>  <td> <button type="button" class="delete" name="delete">Delete</button> </td>
 </script>	
 
   </body>

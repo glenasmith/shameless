@@ -3,7 +3,7 @@ $(function() {
     // Model
     var Post = Backbone.Model.extend({
                 url: function() {
-                    return this.id ? POST.read + '/' + this.id : POST.read;
+                    return this.id ? POST.api + '/' + this.id : POST.api;
                 },
 
                 defaults: {
@@ -22,7 +22,7 @@ $(function() {
     var PostCollection = Backbone.Collection.extend({
 
                 model: Post,
-                url: POST.read
+                url: POST.api
 
             });
 
@@ -39,11 +39,10 @@ $(function() {
 	        _.bindAll(this, "render");
 	    },
 	    render: function () {
-	        //$(this.el).append($("#dns-zone-item-template").tmpl(this.model.toJSON()));
-	        //var rowTemplate = "<td> {{ status }} </td> <td> {{ dateCreated }} </td>\n";
-	        var rowTemplate = $("#rowTemplate").html();
+	        var source = $("#rowTemplate").html();
+	        var template = Handlebars.compile(source);
 	        
-	        $(this.el).append(Mustache.to_html(rowTemplate, this.model.toJSON()));
+	        $(this.el).append(template(this.model.toJSON()));
 	        return this;
 	    },
 	    deleteZone: function () {

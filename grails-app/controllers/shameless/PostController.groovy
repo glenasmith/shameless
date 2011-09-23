@@ -31,5 +31,13 @@ class PostController {
     
     def delete() {
     	println "Deleting with: ${params}"
+    	def result = [:]
+    	def post = Post.get(params.id)
+    	if (post) {
+    		post.delete()
+    		result.id = post.id
+    	}
+    	
+    	render result as JSON
     }
 }
