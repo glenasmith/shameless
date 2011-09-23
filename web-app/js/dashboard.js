@@ -39,7 +39,7 @@ $(function() {
 	        "click .edit" : "editPost"
 	    },
 	    initialize: function () {
-	        _.bindAll(this, "render", "updatePost", "editPost");
+	        _.bindAll(this, "render", "deletePost", "editPost");
 	    },
 	    render: function () {
 	        //var source = $("#rowTemplate").html();
@@ -55,17 +55,13 @@ $(function() {
 	    	}
 	        
 	    },
-	    updatePost: function(event, ui) {
-	    	var newStatus = $("#status").val();
-	    	this.model.set({status: newStatus });
-	    	this.model.save();
-	    },
 	    editPost: function() {
 	    	
+	    	// populate the dialog values
 	    	$("#status").val(this.model.get("status"));
-	    	// $( "#dialog-form" ).data("model", this.model);
-	    	$( "#dialog-form" ).bind("dialogclose", this.updatePost);
 	    	
+	    	// bind the model to the dialog
+	    	$( "#dialog-form" ).data("model", this.model);
 	    	
 	    	$( "#dialog-form" ).dialog({
 				autoOpen: false,
@@ -74,8 +70,12 @@ $(function() {
 				modal: true,
 				buttons: {
 					"Update": function() {
-						
+							var model = $( "#dialog-form" ).data("model");
+							var newStatus = $("#status").val();
+	    					model.set({status: newStatus });
+	    					model.save();
 							$( this ).dialog( "close" );
+							
 						
 					},
 					Cancel: function() {
