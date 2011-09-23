@@ -35,8 +35,9 @@
       	</g:each>
       </div>
       --%>
-      
-      <button name="addEntry" id="addEntry">Add Entry</button><br/>
+      <div id="bbToolbar">
+      	<button name="addEntry" id="addEntry">Add Entry</button>
+      </div>
       <table id="bbFoods">
       	
       	

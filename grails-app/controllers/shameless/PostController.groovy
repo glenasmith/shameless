@@ -14,7 +14,7 @@ class PostController {
     def save() {
     	println "Creating with: ${params}"
     	def account = Account.findByUsername("admin")
-    	def post = new Post(params.post)
+    	def post = new Post(params)
     	post.account = account
     	if (post.save()) {
     		render post as JSON

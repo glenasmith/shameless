@@ -86,8 +86,6 @@ $(function() {
 			});
 			
 			$( "#dialog-form" ).dialog( "open" );
-
-	    	
 	    	
 	    }
     	
@@ -126,6 +124,62 @@ $(function() {
 
             });
             
+            
+    var ToolbarView = Backbone.View.extend({
+
+
+                events: {
+                    "click #addEntry": "add"
+                },
+
+                initialize: function() {
+                     _.bindAll(this, 'render', 'add');
+    				this.collection.bind('all', this.render);
+                },
+
+                render: function() {
+                	// no render required
+                    return this;
+                },
+                
+                add: function() {
+                	// blank the dialog values
+			    	$("#status").val("");
+			    	
+			    	// bind the model to the dialog
+			    	$( "#dialog-form" ).data("collection", this.collection);
+			    	
+			    	$( "#dialog-form" ).dialog({
+						autoOpen: false,
+						height: 300,
+						width: 350,
+						modal: true,
+						buttons: {
+							"Create": function() {
+									var collection = $( "#dialog-form" ).data("collection");
+									var newStatus = $("#status").val();
+									var post = new Post;
+									post.set({status: newStatus});
+									post.save();
+			    					collection.add(post);
+			    					
+									$( this ).dialog( "close" );
+									
+								
+							},
+							Cancel: function() {
+								$( this ).dialog( "close" );
+							}
+							
+						}
+					});
+					
+					$( "#dialog-form" ).dialog( "open" );
+                }
+
+
+            });        
+            
  
 	
 	// Controller
@@ -141,6 +195,7 @@ $(function() {
     	hostList: null,
     	allposts: function () {
         	var view = new PostsView({ collection: this.postList, el: $("#bbFoods") });
+        	var toolbar = new ToolbarView({ collection: this.postList, el: $("#bbToolbar") });
         	this.postList.fetch();
     	},
     	onepost: function (id) {
