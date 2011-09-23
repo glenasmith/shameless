@@ -43,7 +43,7 @@ modules = {
     }
     
     dashboard {
-    	dependsOn 'backbone'
+    	dependsOn 'backbone,jquery-ui'
     	
     	resource url:'/js/dashboard.js'
     }

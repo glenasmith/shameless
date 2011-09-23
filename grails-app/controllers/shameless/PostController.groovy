@@ -15,7 +15,13 @@ class PostController {
     	println "Creating with: ${params}"
     	def account = Account.findByUsername("admin")
     	def post = new Post(params)
-    	render post as JSON
+    	post.account = account
+    	if (post.save()) {
+    		render post as JSON
+		} else {
+			//TODO Error conditions for backbone?
+			response.sendError(404)
+		}
     }
     
     def read() {
@@ -25,8 +31,19 @@ class PostController {
     
     def update() {
     	println "Updating with: ${params}"
-    	def post = new Post(params)
-    	render post as JSON
+    	
+    	def post = Post.get(params.id)
+    	if (post) {
+    		post.properties['status'] = params
+    		if (post.save()) {
+    			render post as JSON
+    		} else {
+    			//TODO Error conditions for backbone?
+    			response.sendError(404)
+    		}
+    	}
+    	//TODO Error conditions for backbone?
+    	response.sendError(404)
     }
     
     def delete() {
@@ -36,6 +53,9 @@ class PostController {
     	if (post) {
     		post.delete()
     		result.id = post.id
+    	} else {
+    		//TODO Error conditions for backbone?
+    		response.sendError(404)
     	}
     	
     	render result as JSON

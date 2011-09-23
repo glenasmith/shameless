@@ -32,25 +32,61 @@ $(function() {
     var PostView = Backbone.View.extend({
     	tagName: "tr",
     	
+    	template: Handlebars.compile( $("#rowTemplate").html() ),
+    	
 	    events: {
-	        "click .delete": "deleteZone"
+	        "click .delete": "deletePost",
+	        "click .edit" : "editPost"
 	    },
 	    initialize: function () {
-	        _.bindAll(this, "render");
+	        _.bindAll(this, "render", "updatePost", "editPost");
 	    },
 	    render: function () {
-	        var source = $("#rowTemplate").html();
-	        var template = Handlebars.compile(source);
+	        //var source = $("#rowTemplate").html();
+	        //var template = Handlebars.compile(source);
 	        
-	        $(this.el).append(template(this.model.toJSON()));
+	        $(this.el).append(this.template(this.model.toJSON()));
 	        return this;
 	    },
-	    deleteZone: function () {
+	    deletePost: function () {
 	    	var answer = confirm("Are you sure you want to delete this entry? This cannot be undone.");
 	    	if (answer) {
 	    		this.model.destroy();
 	    	}
 	        
+	    },
+	    updatePost: function(event, ui) {
+	    	this.model.set("status", $("#status").val());
+	    	this.model.save();
+	    },
+	    editPost: function() {
+	    	
+	    	$("#status").val(this.model.get("status"));
+	    	// $( "#dialog-form" ).data("model", this.model);
+	    	$( "#dialog-form" ).bind("dialogclose", this.updatePost);
+	    	
+	    	
+	    	$( "#dialog-form" ).dialog({
+				autoOpen: false,
+				height: 300,
+				width: 350,
+				modal: true,
+				buttons: {
+					"Update": function() {
+						
+							$( this ).dialog( "close" );
+						
+					},
+					Cancel: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+			
+			$( "#dialog-form" ).dialog( "open" );
+
+	    	
+	    	
 	    }
     	
 	});	

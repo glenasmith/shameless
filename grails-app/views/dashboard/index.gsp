@@ -18,17 +18,18 @@
         <p>We are what you eat!</p>
       </div>
 
+		<%--
       <div class="foods">
       	<g:each var="post" in="${recentPosts}">
       		
       		<g:each var="picId" in="${post.pictureIds}">
-      			<!-- <img src='<g:createLink controller="dashboard" action="renderImage" id="${picId}"/>' style="width: 100px;" title="${post.status} ${post.dateCreated} "/> -->
+      			<img src='<g:createLink controller="dashboard" action="renderImage" id="${picId}"/>' style="width: 100px;" title="${post.status} ${post.dateCreated} "/>
       		</g:each>
       		
       	</g:each>
       </div>
+      --%>
       
-      <input type="button" name="Refresh" value="Refresh" id="bbRefresh"/>
       <table id="bbFoods">
       	
       	
@@ -45,8 +46,20 @@
 </script>
 
 <script type="text/template" id="rowTemplate">	
-	<td> {{ status }}  </td> <td>  {{ dateCreated }}  </td> <td>WIN</td>  <td> <button type="button" class="delete" name="delete">Delete</button> </td>
-</script>	
+	<td> <a href="#post/{{id}}"> {{ status }} </a>  </td> <td>  {{ dateCreated }}  </td> <td>WIN</td>  <td> <button type="button" class="delete" name="delete">Delete</button> </td> <td> <button type="button" class="edit" name="edit">Edit</button> </td>
+</script>
+
+<div id="dialog-form" title="Edit Status" style="display: none;">
+
+	<form>
+	<fieldset>
+		<label for="name">Status</label>
+		<input type="text" name="status" id="status" class="text ui-widget-content ui-corner-all" />
+		<label for="email">Picture</label>
+		<img id="thePicture"/>
+	</fieldset>
+	</form>
+</div>
 
   </body>
 
