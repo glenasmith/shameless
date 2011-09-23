@@ -37,7 +37,7 @@ modules = {
     	
     	resource url:'/js/json2.js' // for old browsers
     	resource url:'/js/underscore-min.js'
-    	resource url:'/js/backbone-min.js'
+    	resource url:'/js/backbone.js'
     }
     
     dashboard {

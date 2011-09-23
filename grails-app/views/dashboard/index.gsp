@@ -22,15 +22,29 @@
       	<g:each var="post" in="${recentPosts}">
       		
       		<g:each var="picId" in="${post.pictureIds}">
-      			<img src='<g:createLink controller="dashboard" action="renderImage" id="${picId}"/>' style="width: 100px;" title="${post.status} ${post.dateCreated} "/>
+      			<!-- <img src='<g:createLink controller="dashboard" action="renderImage" id="${picId}"/>' style="width: 100px;" title="${post.status} ${post.dateCreated} "/> -->
       		</g:each>
       		
       	</g:each>
       </div>
+      
+      <input type="button" name="Refresh" value="Refresh" id="bbRefresh"/>
+      <div id="bbfoods">
+      	
+      </div>
+      
 
       
 
     </div>
-
+<script>
+	var POST = {
+		create: '<g:createLink controller="post" action="create"/>',
+		read: '<g:createLink controller="post" action="read"/>',
+		update: '<g:createLink controller="post" action="update"/>',
+		delete: '<g:createLink controller="post" action="delete"/>'
+	}
+</script>
   </body>
+
 </html>

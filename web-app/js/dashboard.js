@@ -1,67 +1,115 @@
 $(function() {
 
     // Model
-    window.Post = Backbone.Model.extend({
+    var Post = Backbone.Model.extend({
                 url: function() {
-                    return this.id ? '/shameless/post/' + this.id : '/shameless/post.json';
+                    return this.id ? POST.read + '/' + this.id : POST.read;
                 },
 
-                defaults: { post: {
-                    status: 'None entered',
+                defaults: {
+                    status: '',
                     longitude: '',
                     latitude: ''
-                }},
+                },
 
                 initialize: function() {
-                    // can be used to initialize model attributes
+                    console.log("Oh hey, Sparking up a POST! " + this.get("status"));  
                 }
 
             });
 
     // Collection
-
-    window.PostCollection = Backbone.Collection.extend({
+    var PostCollection = Backbone.Collection.extend({
 
                 model: Post,
-                url: '/shameless/posts.json'
+                url: POST.read
 
             });
 
-    window.Posts = new PostCollection;
 
-    //View
 
-    window.PostView = Backbone.View.extend({
-
-                tagName: 'tr',
+	//View
+    var PostsView = Backbone.View.extend({
 
                 events: {
-                    // can be used for handling events on the template
+                    "click #bbRefresh": "add"
                 },
 
                 initialize: function() {
-                    //this.render();
+                     _.bindAll(this, 'render', 'add');
+    				this.collection.bind('all', this.render);
                 },
 
                 render: function() {
-                    var post = this.model.toJSON();
-                    //Template stuff
-                    $(this.el).html(post_template(post));
+                    $(this.el).html(this.model.get("status"));
                     return this;
+                },
+                
+                remove: function() {
+                	$(this.el).remove();
+                },
+                
+                add: function() {
+                	$("#new-zone-form-dialog").dialog("open");
                 }
 
 
-
             });
+            
+    var PostView = Backbone.View.extend({
+    	tagName: "p",
+    	
+	    events: {
+	        "click .delete": "deleteZone"
+	    },
+	    initialize: function () {
+	        _.bindAll(this, "render", "edit");
+	    },
+	    render: function () {
+	        //$(this.el).append($("#dns-zone-item-template").tmpl(this.model.toJSON()));
+	        $(this.el).append(this.model.get("status")).append("<p/>");
+	        return this;
+	    },
+	    deleteZone: function () {
+	    	var answer = confirm("Are you sure you want to delete this entry? This cannot be undone.");
+	    	if (answer) {
+	    		this.model.destroy();
+	    	}
+	        
+	    }
+    	
+	});
+	
+	// Controller
+    var PostRouter = Backbone.Router.extend({
+    	routes: {
+        	"": "allposts",
+        	"post/:id": "onepost"
+    	},
+    	initialize: function (options) {
+ 
+    	},
+    	postList: new PostCollection,
+    	hostList: null,
+    	allposts: function () {
+    		alert("All posts was tripped");
+        	var view = new PostsView({ collection: this.postList, el: $("#bbFoods") });
+        	this.postList.fetch();
+    	},
+    	onepost: function (id) {
+        	alert("Detail Post Not implemented yet");
+    	}
+	});
 
     // Application View
 
-    window.AppView = Backbone.View.extend({
+    var AppView = Backbone.View.extend({
 
                 el: $('#post_app'),
 
                 events: {
                     "submit form":"createPost"
+                    
                 },
 
                 initialize: function() {
@@ -100,5 +148,8 @@ $(function() {
             });
 
     // Start the backbone app
-    window.App = new AppView;
+    // window.App = new AppView;
+    var postApp = new PostRouter;
+    postApp.navigate("");
+    
 });
