@@ -2,7 +2,7 @@ package shameless
 
 class DashboardController {
 
-    def index() { 
+    def index = { 
     	
     	def recentPosts = Post.withCriteria {
     		maxResults(20)
@@ -12,7 +12,7 @@ class DashboardController {
     	
     }
     
-    def renderImage() {
+    def renderImage = {
     	def picture = Picture.get(params.id)
     	if (picture) {
 	        response.setContentLength(picture.image.length)

@@ -6,7 +6,7 @@ class AccountController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    def index() {
+    def index = {
         redirect(action: "list", params: params)
     }
 

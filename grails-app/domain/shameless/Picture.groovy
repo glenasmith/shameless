@@ -3,6 +3,9 @@ package shameless
 class Picture {
 	
 	byte[] image
+	
+	Date dateCreated
+	
 	static belongsTo = [ post : Post ]
 
     static constraints = {

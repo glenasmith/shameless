@@ -8,10 +8,12 @@ class Post {
 	String longitude
 	String latitude
 	
+	boolean badFood
+	
 	Account account
 	
 	Set<String> getPictureIds() {
-		(pictures*.id).sort { a,b -> a <=> b} // sort in ascending ids
+		(pictures*.dateCreated).sort { a,b -> a <=> b} // sort in ascending ids
 	}
 	
 	static hasMany = [pictures:Picture]

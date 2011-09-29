@@ -11,7 +11,7 @@ class PostController {
 	// delete = DELETE /collection/id
 	//static allowedMethods = [save: "POST", show: "GET", update: "PUT", delete: "DELETE"]
 
-    def save() {
+    def save = {
     	println "Creating with: ${params}"
     	def account = Account.findByUsername("admin")
     	def post = new Post(params)
@@ -24,12 +24,12 @@ class PostController {
 		}
     }
     
-    def show() {
+    def show = {
     	println "Reading with: ${params}"
     	render Post.list() as JSON
     }
     
-    def update() {
+    def update = {
     	println "Updating with: ${params}"
     	
     	def post = Post.get(params.id)
@@ -47,7 +47,7 @@ class PostController {
     	response.sendError(404)
     }
     
-    def delete() {
+    def delete = {
     	println "Deleting with: ${params}"
     	def result = [:]
     	def post = Post.get(params.id)
