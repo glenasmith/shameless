@@ -192,7 +192,6 @@ $(function() {
  
     	},
     	postList: new PostCollection,
-    	hostList: null,
     	allposts: function () {
         	var view = new PostsView({ collection: this.postList, el: $("#bbFoods") });
         	var toolbar = new ToolbarView({ collection: this.postList, el: $("#bbToolbar") });
