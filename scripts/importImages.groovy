@@ -1,9 +1,9 @@
 import shameless.*
 
-def imageDir = new File("/Users/Smith/Desktop/100MEDIA")
+def imageDir = new File("test/images")
 def account = Account.findByUsername("admin")
 if (!account) {
-	throw Exception("Couldn't find a user to import with")
+	throw RuntimeException("Couldn't find a user to import with")
 }
 
 imageDir.eachFile { file ->
@@ -12,12 +12,14 @@ imageDir.eachFile { file ->
 		println "${file.name} is processing"
 		def existing = Post.findByStatus(file.name)
 		if (!existing) {
-			def newPost = new Post(account: account, status: file.name, longitude: "", latitude: "")
+            def lastModified = new Date(file.lastModified)
+			def newPost = new Post(account: account, status: file.name, longitude: "", latitude: "", dateCreated: lastModified)
 			if (!newPost.save()) {
 				println "Errors saving post: ${newPost.errors}"
 			} else {
 				def newPic = new Picture(image: file.readBytes())
 				newPost.addToPictures(newPic)
+
 				if (!newPost.save()) {
 					println "Errors saving picture on post: ${newPost.errors}"
 				} else {
