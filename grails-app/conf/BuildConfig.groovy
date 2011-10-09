@@ -27,10 +27,14 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
         // runtime 'mysql:mysql-connector-java:5.1.5'
+        runtime 'com.h2database:h2:1.3.160'
     }
     plugins {
  	   runtime( ':jquery:1.6.1' ) {
     	    excludes "release" // uses an older version
     	}
+        runtime( ':fixtures:1.0.7') {
+            excludes "release" // uses an older version
+        }
 	}
 }
