@@ -101,10 +101,12 @@ $(function() {
                 initialize: function() {
                      _.bindAll(this, 'render', 'add');
     				this.collection.bind('all', this.render);
+
                 },
 
                 render: function() {
-                	var bbFoods = $("#bbFoods").html(""); // blank out existing entries
+                    $(this.el).html("<table id='bbFoods'/>"); // create holder for the view, blanking existing content
+                	var bbFoods = $("#bbFoods");
                     this.collection.each(function (onePost) {
                     	var nextPost = new PostView({model: onePost});
                     	var renderedPost = nextPost.render().el
@@ -127,6 +129,7 @@ $(function() {
             
     var ToolbarView = Backbone.View.extend({
 
+                template: Handlebars.compile( $("#mainToolbarTemplate").html() ),
 
                 events: {
                     "click #addEntry": "add"
@@ -138,7 +141,8 @@ $(function() {
                 },
 
                 render: function() {
-                	// no render required
+                    $(this.el).html(""); // wipe existing
+                	$(this.el).append(this.template([]));
                     return this;
                 },
                 
@@ -180,7 +184,68 @@ $(function() {
 
             });        
             
- 
+
+
+    var DetailToolbarView = Backbone.View.extend({
+
+                template: Handlebars.compile( $("#detailToolbarTemplate").html() ),
+
+                events: {
+                    "click #closeEntry": "close"
+                },
+
+                initialize: function() {
+                     _.bindAll(this, 'render', 'close');
+    				//this.collection.bind('all', this.render);
+                },
+
+                render: function() {
+                    $(this.el).html(""); // wipe existing
+                    $(this.el).append(this.template([]));
+	                return this;
+                },
+
+
+                close: function() {
+                	// nav back to the home page
+			    	postApp.navigate("", true);
+                }
+
+
+            });
+
+     var DetailView = Backbone.View.extend({
+
+                template: Handlebars.compile( $("#detailTemplate").html() ),
+
+                events: {
+                    "click #bbRefresh": "add"
+                },
+
+                initialize: function() {
+                     _.bindAll(this, 'render', 'add');
+
+                },
+
+                render: function() {
+                    $(this.el).html(""); // wipe existing
+                    $(this.el).append(this.template(this.model.toJSON()));
+	                return this;
+                },
+
+                remove: function() {
+                	$(this.el).remove();
+                },
+
+                add: function() {
+                	$("#new-zone-form-dialog").dialog("open");
+                }
+
+
+            });
+
+
+
 	
 	// Controller
     var PostRouter = Backbone.Router.extend({
@@ -193,12 +258,22 @@ $(function() {
     	},
     	postList: new PostCollection,
     	allposts: function () {
-        	var view = new PostsView({ collection: this.postList, el: $("#bbFoods") });
+        	var view = new PostsView({ collection: this.postList, el: $("#bbBody") });
         	var toolbar = new ToolbarView({ collection: this.postList, el: $("#bbToolbar") });
         	this.postList.fetch();
     	},
     	onepost: function (id) {
-        	alert("Detail Post Not implemented yet");
+            var detail = this.postList.get(id)
+            if (!detail) {
+                detail = new Post({"id": id});
+                detail.fetch({async: false});
+            } else {
+                // we fetched from the cache...
+            }
+            var view = new DetailView({ model: detail, el: $("#bbBody") });
+            view.render();
+        	var toolbar = new DetailToolbarView({ el: $("#bbToolbar") });
+            toolbar.render();
     	}
 	});
 

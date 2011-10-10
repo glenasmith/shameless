@@ -25,8 +25,19 @@ class PostController {
     }
     
     def show = {
-    	println "Reading with: ${params}"
-    	render Post.list() as JSON
+        if (params.id) {
+            println "Reading one with: ${params}"
+            def onePost = Post.get(params.id)
+            if (onePost) {
+                render onePost as JSON
+            } else {
+                //TODO Error conditions for backbone?
+			    response.sendError(404)
+            }
+        } else {
+    	    println "Reading all with: ${params}"
+    	    render Post.list() as JSON
+        }
     }
     
     def update = {

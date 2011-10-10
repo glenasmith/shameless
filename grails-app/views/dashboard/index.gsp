@@ -36,12 +36,13 @@
       </div>
       --%>
       <div id="bbToolbar">
-      	<button name="addEntry" id="addEntry">Add Entry</button>
+
       </div>
-      <table id="bbFoods">
+
+      <div id="bbBody">
+
       	
-      	
-      </table>
+      </div>
       
 
       
@@ -56,6 +57,20 @@
 <script type="text/template" id="rowTemplate">	
 	<td> <a href="#post/{{id}}"> {{ status }} </a>  </td> <td>  {{ dateCreated }}  </td> <td>WIN</td>  <td> <button type="button" class="delete" name="delete">Delete</button> </td> <td> <button type="button" class="edit" name="edit">Edit</button> </td>
 </script>
+
+<script type="text/template" id="mainToolbarTemplate">
+  <button name="addEntry" id="addEntry">Add Entry</button>
+</script>
+
+<script type="text/template" id="detailToolbarTemplate">
+    <button name="close" id="closeEntry">Close Entry</button>
+</script>
+
+<script type="text/template" id="detailTemplate">
+	<p>{{ status }} {{ dateCreated }}</p>
+</script>
+
+
 
 <div id="dialog-form" title="Edit Status" style="display: none;">
 
