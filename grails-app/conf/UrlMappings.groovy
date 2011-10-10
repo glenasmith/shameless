@@ -5,6 +5,8 @@ class UrlMappings {
 		"/post/$id?"(resource:"post")
 		// You can do individual mappings but you then have to remember to
 		// use the parseRequest:true to this mapping here
+
+        "/welcome"(view: "welcome")
 		
 		"/$controller/$action?/$id?"{
 			constraints {

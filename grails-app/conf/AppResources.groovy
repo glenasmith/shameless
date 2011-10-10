@@ -9,10 +9,12 @@ modules = {
     }
 
     twitterLess {
-        dependsOn 'less'
+        //dependsOn 'less'
         resource url:'/less/bootstrap.less', attrs: [type: 'css', rel: 'stylesheet/less']
         
     }
+
+    /*
 
     twitterSupport {
         dependsOn 'less'
@@ -31,6 +33,7 @@ modules = {
 		resource url:'/less/application.less', attrs: [type: 'css', rel: 'stylesheet/less']
 
     }
+    */
     
     backbone {
     	dependsOn 'jquery'
