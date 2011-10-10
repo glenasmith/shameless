@@ -67,6 +67,7 @@
 </script>
 
 <script type="text/template" id="detailTemplate">
+    <p><image src="${g.createLink(controller: 'dashboard', action:'renderImage')}/{{id}}" title="{{status}}" width=500 height=300/></p>
 	<p>{{ status }} {{ dateCreated }}</p>
 </script>
 
