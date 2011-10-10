@@ -1,0 +1,30 @@
+
+
+@basecolor: #F0F2EB;
+@basesize: 15px;
+@gentle: #FF4141;
+
+body {
+    font-family: "Verdana";
+    font-size: @basesize;
+}
+
+.rounded-corners (@radius: 5px) {
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+}
+
+.hero-unit {
+    padding: 1em;
+    background-color: @gentle;
+    .rounded-corners(30px);
+    h1 {
+      font-size: @basesize * 5;
+    }
+    p {
+        color: @basecolor;
+    }
+
+
+}

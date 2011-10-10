@@ -3,7 +3,7 @@
 <head>
   <title>Welcome to SeeFoodDiet &raquo; The Visual Food Diary</title>
   <meta name="layout" content="main-min"/>
-  <r:require module="twitterLess"/>
+  <r:require module="seefooddiet"/>
 </head>
 
 <body>

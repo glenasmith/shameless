@@ -3,6 +3,10 @@ modules = {
 	less {
         resource url:'/js/less-1.1.3.min.js'
     }
+
+    seefooddiet {
+        resource url:'/less/seefooddiet.less', attrs: [type: 'css', rel: 'stylesheet/less']
+    }
     
     twitter {
     	resource url: '/css/bootstrap.min.css'
