@@ -13,12 +13,13 @@ imageDir.eachFile { file ->
 		def existing = Post.findByStatus(file.name)
 		if (!existing) {
             def lastModified = new Date(file.lastModified())
-			def newPost = new Post(account: account, status: file.name, longitude: "", latitude: "", dateCreated: lastModified)
+			def newPost = new Post(account: account, status: file.name, longitude: "", latitude: "")
 			if (!newPost.save()) {
 				println "Errors saving post: ${newPost.errors}"
 			} else {
 				def newPic = new Picture(image: file.readBytes())
 				newPost.addToPictures(newPic)
+                newPost.dateCreated = lastModified
 
 				if (!newPost.save(flush: true)) {
 					println "Errors saving picture on post: ${newPost.errors}"

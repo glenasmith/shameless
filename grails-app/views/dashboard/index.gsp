@@ -49,7 +49,7 @@
     </div>
 <script>
 	var POST = {
-		api: '<g:resource dir="post"/>',
+		api: '<g:resource dir="post"/>'
 	}
 </script>
 
