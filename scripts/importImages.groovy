@@ -12,7 +12,7 @@ imageDir.eachFile { file ->
 		println "${file.name} is processing"
 		def existing = Post.findByStatus(file.name)
 		if (!existing) {
-            def lastModified = new Date(file.lastModified)
+            def lastModified = new Date(file.lastModified())
 			def newPost = new Post(account: account, status: file.name, longitude: "", latitude: "", dateCreated: lastModified)
 			if (!newPost.save()) {
 				println "Errors saving post: ${newPost.errors}"

@@ -13,7 +13,7 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop','update'
+            dbCreate = "update" // one of 'create', 'create-drop','update'
             url = "jdbc:h2:file:devDB"
         }
     }
@@ -25,8 +25,8 @@ environments {
     }
     production {
         dataSource {
-            //dbCreate = "update"
-            url = "jdbc:h2:file:prodDb;shutdown=true"
+            dbCreate = "update"
+            url = "jdbc:h2:file:devDB;shutdown=true"
         }
     }
 }
