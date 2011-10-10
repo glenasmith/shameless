@@ -20,7 +20,7 @@ imageDir.eachFile { file ->
 				def newPic = new Picture(image: file.readBytes())
 				newPost.addToPictures(newPic)
 
-				if (!newPost.save()) {
+				if (!newPost.save(flush: true)) {
 					println "Errors saving picture on post: ${newPost.errors}"
 				} else {
 					println "${file.name} is saved ok"

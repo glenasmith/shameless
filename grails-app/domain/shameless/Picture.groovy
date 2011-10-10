@@ -9,6 +9,6 @@ class Picture {
 	static belongsTo = [ post : Post ]
 
     static constraints = {
-    	image nullable: false, maxSize: 1024000
+    	image nullable: false, maxSize: 2048000
     }
 }

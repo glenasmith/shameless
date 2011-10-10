@@ -1,103 +1,100 @@
 package shameless
 
-import org.springframework.dao.DataIntegrityViolationException
-
 class AccountController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    //static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
         redirect(action: "list", params: params)
     }
 
-    def list() {
+    def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [accountInstanceList: Account.list(params), accountInstanceTotal: Account.count()]
     }
 
-    def create() {
-        [accountInstance: new Account(params)]
+    def create = {
+        def accountInstance = new Account()
+        accountInstance.properties = params
+        return [accountInstance: accountInstance]
     }
 
-    def save() {
+    def save = {
         def accountInstance = new Account(params)
-        if (!accountInstance.save(flush: true)) {
+        if (accountInstance.save(flush: true)) {
+            flash.message = "${message(code: 'default.created.message', args: [message(code: 'account.label', default: 'Account'), accountInstance.id])}"
+            redirect(action: "show", id: accountInstance.id)
+        }
+        else {
             render(view: "create", model: [accountInstance: accountInstance])
-            return
         }
-
-		flash.message = message(code: 'default.created.message', args: [message(code: 'account.label', default: 'Account'), accountInstance.id])
-        redirect(action: "show", id: accountInstance.id)
     }
 
-    def show() {
+    def show = {
         def accountInstance = Account.get(params.id)
         if (!accountInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
             redirect(action: "list")
-            return
         }
-
-        [accountInstance: accountInstance]
+        else {
+            [accountInstance: accountInstance]
+        }
     }
 
-    def edit() {
+    def edit = {
         def accountInstance = Account.get(params.id)
         if (!accountInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
             redirect(action: "list")
-            return
         }
-
-        [accountInstance: accountInstance]
+        else {
+            return [accountInstance: accountInstance]
+        }
     }
 
-    def update() {
+    def update = {
         def accountInstance = Account.get(params.id)
-        if (!accountInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])
-            redirect(action: "list")
-            return
-        }
-
-        if (params.version) {
-            def version = params.version.toLong()
-            if (accountInstance.version > version) {
-                accountInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'account.label', default: 'Account')] as Object[],
-                          "Another user has updated this Account while you were editing")
+        if (accountInstance) {
+            if (params.version) {
+                def version = params.version.toLong()
+                if (accountInstance.version > version) {
+                    
+                    accountInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'account.label', default: 'Account')] as Object[], "Another user has updated this Account while you were editing")
+                    render(view: "edit", model: [accountInstance: accountInstance])
+                    return
+                }
+            }
+            accountInstance.properties = params
+            if (!accountInstance.hasErrors() && accountInstance.save(flush: true)) {
+                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'account.label', default: 'Account'), accountInstance.id])}"
+                redirect(action: "show", id: accountInstance.id)
+            }
+            else {
                 render(view: "edit", model: [accountInstance: accountInstance])
-                return
             }
         }
-
-        accountInstance.properties = params
-
-        if (!accountInstance.save(flush: true)) {
-            render(view: "edit", model: [accountInstance: accountInstance])
-            return
+        else {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
+            redirect(action: "list")
         }
-
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'account.label', default: 'Account'), accountInstance.id])
-        redirect(action: "show", id: accountInstance.id)
     }
 
-    def delete() {
+    def delete = {
         def accountInstance = Account.get(params.id)
-        if (!accountInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])
-            redirect(action: "list")
-            return
+        if (accountInstance) {
+            try {
+                accountInstance.delete(flush: true)
+                flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
+                redirect(action: "list")
+            }
+            catch (org.springframework.dao.DataIntegrityViolationException e) {
+                flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
+                redirect(action: "show", id: params.id)
+            }
         }
-
-        try {
-            accountInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'account.label', default: 'Account'), params.id])
+        else {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])}"
             redirect(action: "list")
-        }
-        catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'account.label', default: 'Account'), params.id])
-            redirect(action: "show", id: params.id)
         }
     }
 }
