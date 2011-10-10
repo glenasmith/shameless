@@ -91,3 +91,6 @@ log4j = {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'shameless.Account'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'shameless.AccountRole'
 grails.plugins.springsecurity.authority.className = 'shameless.Role'
+grails.plugins.springsecurity.roleHierarchy = '''
+   ROLE_ADMIN > ROLE_USER
+'''

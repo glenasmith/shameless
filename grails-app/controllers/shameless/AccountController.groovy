@@ -1,8 +1,20 @@
 package shameless
 
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugins.springsecurity.Secured
+
+@Secured(['ROLE_USER'])
 class AccountController {
 
     //static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+
+    static navigation = [
+		group:'tabs',
+		order:99,
+		title:'Account',
+		action:'list',
+		isVisible: { SpringSecurityUtils.ifAnyGranted("ROLE_USER,ROLE_ADMIN") }
+	]
 
     def index = {
         redirect(action: "list", params: params)

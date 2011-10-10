@@ -1,7 +1,19 @@
 package shameless
 
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugins.springsecurity.Secured
+
 class DashboardController {
 
+    static navigation = [
+		group:'tabs',
+		order:10,
+		title:'Home',
+		action:'index',
+		//isVisible: { SpringSecurityUtils.ifAnyGranted("ROLE_USER,ROLE_ADMIN") }
+	]
+
+    @Secured(['ROLE_USER'])
     def index = { 
     	
     	def recentPosts = Post.withCriteria {

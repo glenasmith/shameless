@@ -14,11 +14,19 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
+
+        <nav:resources override="true"/>
+        <style>
+      li.navigation_active {
+          background-color: #DFDFDF;
+      }
+      </style>
 		<g:layoutHead/>
 		<r:layoutResources/>
 	</head>
 	<body>
 		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
+        <div class="nav">   <nav:render group="tabs"/>  </div>
 		<g:layoutBody/>
 		<r:layoutResources/>
 		<div class="footer" role="contentinfo">&copy; Bytecode Pty Ltd 2011</div>
