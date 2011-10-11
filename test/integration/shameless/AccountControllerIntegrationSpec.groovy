@@ -2,13 +2,6 @@ package shameless
 
 import grails.plugin.spock.IntegrationSpec
 
-/**
- * Created by IntelliJ IDEA.
- * User: glen
- * Date: 11/10/11
- * Time: 2:11 PM
- * To change this template use File | Settings | File Templates.
- */
 class AccountControllerIntegrationSpec extends IntegrationSpec {
 
     def "bootstrap always creates admin user"() {
@@ -25,16 +18,16 @@ class AccountControllerIntegrationSpec extends IntegrationSpec {
 
     def "the same test but an integration edition"() {
 
-        given:
+        given:  "a set of brand new accounts"
         def account = new Account(username: "Glen", password: "sesame", realName: "Glen Smith")
         account.save()
         new Account(username: "Joe", password: "sesame", realName: "Joe Cool").save()
         def controller = new AccountController()
 
-        when:
+        when:  "I list all accounts"
         def mandv = controller.list()
 
-        then:
+        then:  "I see a list of accounts"
         account != null
         account.errors.errorCount == 0
         mandv.accountInstanceList.size() == 3
