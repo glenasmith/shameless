@@ -4,6 +4,17 @@ import grails.plugin.spock.IntegrationSpec
 
 class AccountControllerIntegrationSpec extends IntegrationSpec {
 
+    def "redirects work different in integration tests"() {
+      given:
+      def controller = new AccountController()
+
+      when:
+      controller.index()
+
+      then:
+      controller.response.redirectedUrl == '/account/list'
+    }
+
     def "bootstrap always creates admin user"() {
 
         when:
