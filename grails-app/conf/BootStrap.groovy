@@ -1,4 +1,5 @@
 import shameless.*
+import grails.util.GrailsUtil
 
 class BootStrap {
 	
@@ -6,7 +7,16 @@ class BootStrap {
     def fixtureLoader
 
     def init = { servletContext ->
-    	
+
+
+//        if (GrailsUtil.environment == "test") {
+//              def testUser = new Account(username: 'admin', realName: "Test Admin", password: 'test', enabled: true)
+//              testUser.save(failOnError: true)
+//              springSecurityService.currentUser = testUser;
+//        }
+
+
+
     	if (Account.count() == 0) {
 //    		def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
 //      		def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
@@ -19,6 +29,8 @@ class BootStrap {
             fixtureLoader.load("accounts")
 
   		}
+
+
     	
     	
     }

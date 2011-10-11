@@ -58,6 +58,7 @@ environments {
     }
     test {
         grails.serverURL = "http://localhost:8080/${appName}"
+        // grails.plugins.springsecurity.active = false
     }
 
 }
