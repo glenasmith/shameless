@@ -95,3 +95,6 @@ grails.plugins.springsecurity.authority.className = 'shameless.Role'
 grails.plugins.springsecurity.roleHierarchy = '''
    ROLE_ADMIN > ROLE_USER
 '''
+
+// mail configuration
+grails.mail.disabled=true
