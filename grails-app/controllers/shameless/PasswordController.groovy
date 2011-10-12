@@ -54,7 +54,8 @@ class PasswordController {
     def changePassword = {
 
         // copy and paste spring sample here
-        String username = session['SPRING_SECURITY_LAST_USERNAME']
+        //String username = session['SPRING_SECURITY_LAST_USERNAME']
+        String username = springSecurityService.currentUser?.username
         if (!username) {
             flash.message = 'Sorry, an error has occurred'
             redirect controller: 'login', action: 'auth'
@@ -85,6 +86,7 @@ class PasswordController {
         user.password = newPassword
         user.passwordExpired = false
         user.save() // if you have password constraints check them here
+        flash.message = 'Password change successful'
 
         redirect controller: 'login', action: 'auth'
 

@@ -22,4 +22,23 @@ class PasswordControllerIntegrationSpec extends IntegrationSpec {
 
     }
 
+    def "Changing passwords"() {
+      given:
+      def controller = new PasswordController()
+      controller.params.with {
+          password = "admin123"
+          password_new = "newbie"
+          password_new_2 = "newbie"
+      }
+      controller.springSecurityService = [
+              currentUser : [username : 'admin' ]
+      ]
+
+      when:
+      def mandv = controller.changePassword()
+
+      then:
+      controller.flash.message == 'Password change successful'
+    }
+
 }
