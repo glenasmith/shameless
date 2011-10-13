@@ -2,7 +2,7 @@ package shameless
 
 import grails.test.*
 
-class PasswordControllerTests extends ControllerUnitTestCase {
+class ReportingServiceTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }
@@ -12,7 +12,6 @@ class PasswordControllerTests extends ControllerUnitTestCase {
     }
 
     void testSomething() {
-
 
     }
 }
