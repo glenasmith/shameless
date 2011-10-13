@@ -13,16 +13,16 @@ class ReportingServiceIntegrationSpec extends IntegrationSpec {
       fixtureLoader.load {
           glen(Account, username: 'glen', email: 'glen@bytecode.com.au', realName: 'Glen', password: 'hiya')
           post(Post, account: glen, status: 'Cake was awesome', badFood: true)
-          post(Post, account: glen, status: 'Vegies soup for lunch', badFood: false)
+          post(Post, account: glen, status: 'Vegies soup for lunch', badFood: true)
           post(Post, account: glen, status: 'Pizza was very nice', badFood: true)
       }
 
 
       when:
-      def result = reportingService.badFoodsByDate("glen")
+      def result = reportingService.badFoodsForUser("glen")
 
       then:
-      true
+      result == 2
     }
 
 }
