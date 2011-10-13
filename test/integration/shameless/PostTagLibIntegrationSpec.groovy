@@ -6,10 +6,10 @@ class PostTagLibIntegrationSpec extends IntegrationSpec {
 
     def "Testing Post iterator works as expected"() {
       given:
-
+      def t = new PostTagLib()
 
       when:
-      a = true
+      def output = t.printPosts(posts: [new Post(), new Post()])
 
       then:
       true
