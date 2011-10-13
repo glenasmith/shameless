@@ -22,7 +22,7 @@ class ReportingServiceIntegrationSpec extends IntegrationSpec {
       def result = reportingService.badFoodsForUser("glen")
 
       then:
-      result == 2
+      result.dump() == 2
     }
 
 }

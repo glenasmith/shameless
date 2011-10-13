@@ -8,8 +8,10 @@ class ReportingService {
 
         def badFoods = Post.withCriteria {
             createAlias("account", "a")
-            eq('a.username', username)
-            eq("badFood", true)
+            and {
+                eq('a.username', username)
+                eq("badFood", true)
+            }
 
         }
         return badFoods  // list of object[]
