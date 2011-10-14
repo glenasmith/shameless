@@ -31,6 +31,6 @@ class ReportingService {
 
 
         }
-        return badFoods  // list of object[]
+        return badFoods  // list of object[] Something like [[peter, 1], [glen, 2]]
     }
 }
