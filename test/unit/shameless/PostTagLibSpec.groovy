@@ -1,7 +1,5 @@
 package shameless
 
-import grails.test.*
-import grails.plugin.spock.UnitSpec
 import grails.plugin.spock.TagLibSpec
 
 class PostTagLibSpec extends TagLibSpec {
@@ -12,7 +10,7 @@ class PostTagLibSpec extends TagLibSpec {
 
 
       when:
-      def output = printPosts(posts : posts)
+      def output = displayPostList(posts : posts)
 
       then:
       output == "Good times"

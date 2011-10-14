@@ -1,5 +1,6 @@
 package shameless
 
+//TODO This should really be Meal in my thinking...
 class Post {
 	
 	Date dateCreated

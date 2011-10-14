@@ -2,7 +2,7 @@ package shameless
 
 class PostTagLib {
 
-    def printPosts = { attrs ->
+    def displayPostList = { attrs ->
 
            attrs.posts?.each { post ->
                out << "glen"
