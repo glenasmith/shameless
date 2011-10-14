@@ -9,6 +9,10 @@
 </head>
 <body>
 
+<h2>Recently On Your Plate</h2>
+
+It's time to get accountable with yourself. Here's what's been in your diet lately....
+
 <g:if test="${postList}">
   <table id="postlist">
   <g:each in="${postList}" var="post" status="i">
