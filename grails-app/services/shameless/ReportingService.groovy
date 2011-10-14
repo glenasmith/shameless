@@ -14,11 +14,11 @@ class ReportingService {
             }
 
         }
-        return badFoods  // list of object[]
+        return badFoods  // list of Post
 
     }
 
-    def badFoodsPerUser() {
+    def badFoodsCountByUser() {
 
         def badFoods = Post.withCriteria {
             createAlias("account", "a")
@@ -27,6 +27,7 @@ class ReportingService {
                 groupProperty 'a.username'
                 count 'a.username'
             }
+            order('a.username')
 
 
         }
