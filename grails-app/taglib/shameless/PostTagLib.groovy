@@ -24,4 +24,14 @@ class PostTagLib {
 
     }
 
+
+    def postTableRender = { attrs ->
+         if (attrs.posts) {
+            out << render(template:'/post/postTable', model:[posts: attrs.posts] )
+        } else {
+            out << "Sorry, no posts available right now"
+        }
+        out
+    }
+
 }
