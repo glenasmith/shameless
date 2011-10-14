@@ -2,12 +2,26 @@ package shameless
 
 class PostTagLib {
 
-    def displayPostList = { attrs ->
+    def postTable = { attrs ->
 
-           attrs.posts?.each { post ->
-               out << "glen"
-           }
-        out << "Good times"
+        if (attrs.posts) {
+            out << '''
+<table id="postlist">
+<thead><tr>  <th>Date</th> <th>Meal</th> <th>Bad Food?</th> </tr></thead>
+'''
+            attrs.posts.each { post ->
+                out << """
+<tr>
+      <td> ${post.dateCreated}  </td>
+      <td> ${post.status}  </td>
+"""
+                out << (post.badFood ? '<td style="bad">BAD BAD BAD</td>' : '<td>Great choice!</td>')
+            }
+        } else {
+            out << "Sorry, no posts available right now"
+        }
+        out
+
     }
 
 }
