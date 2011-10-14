@@ -27,6 +27,7 @@ class PasswordControllerSpec extends ControllerSpec {
       cpc.validate()
       controller.springSecurityService = [ currentUser: [ username: 'glen']]
       controller.passwordEncoder = [ isPasswordValid : { a,b,c -> a == b }]
+      cpc.passwordEncoder = controller.passwordEncoder
 
       when:
       def model = controller.changePassword(cpc)
