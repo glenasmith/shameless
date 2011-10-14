@@ -8,11 +8,11 @@ class ChangePasswordCommand {
 
     static constraints = {
 		password(blank:false)
-		password_new(blank:false, validator: { val, obj ->
-			obj.password_new_2 == val &&  // they don't match or
-                    obj.password != val   // they match the existing password
+		password_new(blank:false)
+        password_new_2(blank:false, validator: { val, obj ->
+			obj.password_new == val &&  // they new passwords match and
+                    obj.password != val   // they don't match the existing password
 		})
-        password_new_2(blank:false)
 	}
 
 
