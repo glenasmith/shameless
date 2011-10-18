@@ -4,7 +4,7 @@ import grails.converters.JSON
 import grails.plugins.springsecurity.Secured
 
 @Secured(['ROLE_USER'])
-class PostController {
+class MealController {
 	
 	// Backbone approach:
 	// create = POST /collection
@@ -16,7 +16,7 @@ class PostController {
     def save = {
     	println "Creating with: ${params}"
     	def account = Account.findByUsername("admin")
-    	def post = new Post(params)
+    	def post = new Meal(params)
     	post.account = account
     	if (post.save()) {
     		render post as JSON
@@ -29,7 +29,7 @@ class PostController {
     def show = {
         if (params.id) {
             println "Reading one with: ${params}"
-            def onePost = Post.get(params.id)
+            def onePost = Meal.get(params.id)
             if (onePost) {
                 render onePost as JSON
             } else {
@@ -38,14 +38,14 @@ class PostController {
             }
         } else {
     	    println "Reading all with: ${params}"
-    	    render Post.list() as JSON
+    	    render Meal.list() as JSON
         }
     }
     
     def update = {
     	println "Updating with: ${params}"
     	
-    	def post = Post.get(params.id)
+    	def post = Meal.get(params.id)
     	if (post) {
     		println "New status is ${params.post.status}"
     		post.properties['status'] = params.post.status
@@ -63,7 +63,7 @@ class PostController {
     def delete = {
     	println "Deleting with: ${params}"
     	def result = [:]
-    	def post = Post.get(params.id)
+    	def post = Meal.get(params.id)
     	if (post) {
     		post.delete()
     		result.id = post.id

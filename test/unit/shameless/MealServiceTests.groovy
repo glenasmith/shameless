@@ -2,7 +2,7 @@ package shameless
 
 import grails.test.*
 
-class PostServiceTests extends GrailsUnitTestCase {
+class MealServiceTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }

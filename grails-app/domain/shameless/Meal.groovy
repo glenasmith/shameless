@@ -1,7 +1,7 @@
 package shameless
 
 //TODO This should really be Meal in my thinking...
-class Post {
+class Meal {
 	
 	Date dateCreated
 	String status

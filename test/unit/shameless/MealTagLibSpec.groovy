@@ -2,14 +2,14 @@ package shameless
 
 import grails.plugin.spock.TagLibSpec
 
-class PostTagLibSpec extends TagLibSpec {
+class MealTagLibSpec extends TagLibSpec {
 
     def "ensure populated display table is working"() {
       given:
       def posts = [
-              new Post(dateCreated: new Date(), status: "Pizza Again", badFood: true),
-              new Post(dateCreated: new Date(), status: "Fruit Salad", badFood: false),
-              new Post(dateCreated: new Date(), status: "Nachos", badFood: true)
+              new Meal(dateCreated: new Date(), status: "Pizza Again", badFood: true),
+              new Meal(dateCreated: new Date(), status: "Fruit Salad", badFood: false),
+              new Meal(dateCreated: new Date(), status: "Nachos", badFood: true)
               ]
 
       when:
@@ -35,9 +35,9 @@ class PostTagLibSpec extends TagLibSpec {
      def "ensure our refactored render tag is working"() {
       given:
       def posts = [
-              new Post(dateCreated: new Date(), status: "Pizza Again", badFood: true),
-              new Post(dateCreated: new Date(), status: "Fruit Salad", badFood: false),
-              new Post(dateCreated: new Date(), status: "Nachos", badFood: true)
+              new Meal(dateCreated: new Date(), status: "Pizza Again", badFood: true),
+              new Meal(dateCreated: new Date(), status: "Fruit Salad", badFood: false),
+              new Meal(dateCreated: new Date(), status: "Nachos", badFood: true)
               ]
 
       when:

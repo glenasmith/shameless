@@ -3,7 +3,7 @@ package shameless
 import spock.lang.*
 import grails.plugin.spock.*
 
-class PostControllerSpec extends ControllerSpec {
+class MealControllerSpec extends ControllerSpec {
 
     def "check email is reset on forgotten password"() {
       given:
