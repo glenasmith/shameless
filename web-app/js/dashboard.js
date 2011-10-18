@@ -1,7 +1,7 @@
 $(function() {
 
     // Model
-    var Post = Backbone.Model.extend({
+    var Meal = Backbone.Model.extend({
                 url: function() {
                     return this.id ? POST.api + '/' + this.id : POST.api;
                 },
@@ -13,15 +13,15 @@ $(function() {
                 },
 
                 initialize: function() {
-                    console.log("Read Post: " + this.get("status"));  
+                    console.log("Read Meal: " + this.get("status"));
                 }
 
             });
 
     // Collection
-    var PostCollection = Backbone.Collection.extend({
+    var MealCollection = Backbone.Collection.extend({
 
-                model: Post,
+                model: Meal,
                 url: POST.api
 
             });
@@ -29,17 +29,17 @@ $(function() {
 
 
 	//View
-    var PostView = Backbone.View.extend({
+    var MealView = Backbone.View.extend({
     	tagName: "tr",
     	
     	template: Handlebars.compile( $("#rowTemplate").html() ),
     	
 	    events: {
-	        "click .delete": "deletePost",
-	        "click .edit" : "editPost"
+	        "click .delete": "deleteMeal",
+	        "click .edit" : "editMeal"
 	    },
 	    initialize: function () {
-	        _.bindAll(this, "render", "deletePost", "editPost");
+	        _.bindAll(this, "render", "deleteMeal", "editMeal");
 	    },
 	    render: function () {
 	        //var source = $("#rowTemplate").html();
@@ -48,14 +48,14 @@ $(function() {
 	        $(this.el).append(this.template(this.model.toJSON()));
 	        return this;
 	    },
-	    deletePost: function () {
+	    deleteMeal: function () {
 	    	var answer = confirm("Are you sure you want to delete this entry? This cannot be undone.");
 	    	if (answer) {
 	    		this.model.destroy();
 	    	}
 	        
 	    },
-	    editPost: function() {
+	    editMeal: function() {
 	    	
 	    	// populate the dialog values
 	    	$("#status").val(this.model.get("status"));
@@ -92,7 +92,7 @@ $(function() {
 	});	
 	
 	
-    var PostsView = Backbone.View.extend({
+    var MealCollectionView = Backbone.View.extend({
 
                 events: {
                     "click #bbRefresh": "add"
@@ -108,8 +108,8 @@ $(function() {
                     $(this.el).html("<table id='bbFoods'/>"); // create holder for the view, blanking existing content
                 	var bbFoods = $("#bbFoods");
                     this.collection.each(function (onePost) {
-                    	var nextPost = new PostView({model: onePost});
-                    	var renderedPost = nextPost.render().el
+                    	var nextMeal = new MealView({model: onePost});
+                    	var renderedPost = nextMeal.render().el
                     	bbFoods.append(renderedPost);
                 	});
                     return this;
@@ -162,10 +162,10 @@ $(function() {
 							"Create": function() {
 									var collection = $( "#dialog-form" ).data("collection");
 									var newStatus = $("#status").val();
-									var post = new Post;
-									post.set({status: newStatus});
-									post.save();
-			    					collection.add(post);
+									var meal = new Meal;
+									meal.set({status: newStatus});
+									meal.save();
+			    					collection.add(meal);
 			    					
 									$( this ).dialog( "close" );
 									
@@ -248,24 +248,24 @@ $(function() {
 
 	
 	// Controller
-    var PostRouter = Backbone.Router.extend({
+    var MealRouter = Backbone.Router.extend({
     	routes: {
-        	"": "allposts",
-        	"post/:id": "onepost"
+        	"": "allMeals",
+        	"meal/:id": "oneMeal"
     	},
     	initialize: function (options) {
  
     	},
-    	postList: new PostCollection,
-    	allposts: function () {
-        	var view = new PostsView({ collection: this.postList, el: $("#bbBody") });
-        	var toolbar = new ToolbarView({ collection: this.postList, el: $("#bbToolbar") });
-        	this.postList.fetch();
+    	mealList: new MealCollection,
+    	allMeals: function () {
+        	var view = new MealCollectionView({ collection: this.mealList, el: $("#bbBody") });
+        	var toolbar = new ToolbarView({ collection: this.mealList, el: $("#bbToolbar") });
+        	this.mealList.fetch();
     	},
-    	onepost: function (id) {
-            var detail = this.postList.get(id)
+    	oneMeal: function (id) {
+            var detail = this.mealList.get(id)
             if (!detail) {
-                detail = new Post({"id": id});
+                detail = new Meal({"id": id});
                 detail.fetch({async: false});
             } else {
                 // we fetched from the cache...
@@ -280,7 +280,7 @@ $(function() {
   
 
     // Start the backbone app
-    var postApp = new PostRouter;
+    var postApp = new MealRouter;
 
 	// And start all the magic....    
     Backbone.history.start();
