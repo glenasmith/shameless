@@ -5,13 +5,10 @@ import grails.plugin.spock.*
 
 class MealControllerSpec extends ControllerSpec {
 
-    def "check email is reset on forgotten password"() {
-      given:
-      mockDomain(Account, [ new Account(username: 'glen', password: 'help')])
-      controller.params.username = 'glen'
+    def "put some logic here"() {
 
       when:
-      def model = controller.forgottenPassword()
+      def model = controller.index()
 
       then:
       true

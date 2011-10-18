@@ -1,6 +1,6 @@
 package shameless
 
-class PostTagLib {
+class MealTagLib {
 
     def postTable = { attrs ->
 
