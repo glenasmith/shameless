@@ -50,12 +50,12 @@
     </div>
 <script>
 	var POST = {
-		api: '<g:resource dir="post"/>'
+		api: '<g:resource dir="meal"/>'
 	}
 </script>
 
 <script type="text/template" id="rowTemplate">	
-	<td> <a href="#post/{{id}}"> {{ status }} </a>  </td> <td>  {{ dateCreated }}  </td> <td>WIN</td>  <td> <button type="button" class="delete" name="delete">Delete</button> </td> <td> <button type="button" class="edit" name="edit">Edit</button> </td>
+	<td> <a href="#meal/{{id}}"> {{ status }} </a>  </td> <td>  {{ dateCreated }}  </td> <td>WIN</td>  <td> <button type="button" class="delete" name="delete">Delete</button> </td> <td> <button type="button" class="edit" name="edit">Edit</button> </td>
 </script>
 
 <script type="text/template" id="mainToolbarTemplate">

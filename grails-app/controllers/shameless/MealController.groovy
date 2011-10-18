@@ -16,10 +16,10 @@ class MealController {
     def save = {
     	println "Creating with: ${params}"
     	def account = Account.findByUsername("admin")
-    	def post = new Meal(params)
-    	post.account = account
-    	if (post.save()) {
-    		render post as JSON
+    	def meal = new Meal(params)
+    	meal.account = account
+    	if (meal.save()) {
+    		render meal as JSON
 		} else {
 			//TODO Error conditions for backbone?
 			response.sendError(404)
@@ -29,9 +29,9 @@ class MealController {
     def show = {
         if (params.id) {
             println "Reading one with: ${params}"
-            def onePost = Meal.get(params.id)
-            if (onePost) {
-                render onePost as JSON
+            def oneMeal = Meal.get(params.id)
+            if (oneMeal) {
+                render oneMeal as JSON
             } else {
                 //TODO Error conditions for backbone?
 			    response.sendError(404)
@@ -45,12 +45,12 @@ class MealController {
     def update = {
     	println "Updating with: ${params}"
     	
-    	def post = Meal.get(params.id)
-    	if (post) {
+    	def meal = Meal.get(params.id)
+    	if (meal) {
     		println "New status is ${params.post.status}"
-    		post.properties['status'] = params.post.status
-    		if (post.save()) {
-    			render post as JSON
+    		meal.properties['status'] = params.post.status
+    		if (meal.save()) {
+    			render meal as JSON
     		} else {
     			//TODO Error conditions for backbone?
     			response.sendError(404)
@@ -63,10 +63,10 @@ class MealController {
     def delete = {
     	println "Deleting with: ${params}"
     	def result = [:]
-    	def post = Meal.get(params.id)
-    	if (post) {
-    		post.delete()
-    		result.id = post.id
+    	def meal = Meal.get(params.id)
+    	if (meal) {
+    		meal.delete()
+    		result.id = meal.id
     	} else {
     		//TODO Error conditions for backbone?
     		response.sendError(404)

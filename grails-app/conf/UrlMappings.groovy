@@ -2,7 +2,7 @@ class UrlMappings {
 
 	static mappings = {
 		
-		"/post/$id?"(resource:"post")
+		"/meal/$id?"(resource:"meal")
 		// You can do individual mappings but you then have to remember to
 		// use the parseRequest:true to this mapping here
 
