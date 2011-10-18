@@ -6,7 +6,7 @@ class Picture {
 	
 	Date dateCreated
 	
-	static belongsTo = [ post : Post ]
+	static belongsTo = [ meal : Meal ]
 
     static constraints = {
     	image nullable: false, maxSize: 2048000

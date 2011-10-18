@@ -1,6 +1,5 @@
 package shameless
 
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 import grails.plugins.springsecurity.Secured
 
 class DashboardController {
@@ -16,7 +15,7 @@ class DashboardController {
     @Secured(['ROLE_USER'])
     def index = { 
     	
-    	def recentPosts = Post.withCriteria {
+    	def recentPosts = Meal.withCriteria {
     		maxResults(20)
     		order("dateCreated", "desc")
     	}

@@ -10,19 +10,19 @@ imageDir.eachFile { file ->
 	
 	if (file.name.endsWith("jpg")) {
 		println "${file.name} is processing"
-		def existing = Post.findByStatus(file.name)
+		def existing = Meal.findByStatus(file.name)
 		if (!existing) {
             def lastModified = new Date(file.lastModified())
-			def newPost = new Post(account: account, status: file.name, longitude: "", latitude: "")
-			if (!newPost.save()) {
-				println "Errors saving post: ${newPost.errors}"
+			def newMeal = new Meal(account: account, status: file.name, longitude: "", latitude: "")
+			if (!newMeal.save()) {
+				println "Errors saving post: ${newMeal.errors}"
 			} else {
 				def newPic = new Picture(image: file.readBytes())
-				newPost.addToPictures(newPic)
-                newPost.dateCreated = lastModified
+				newMeal.addToPictures(newPic)
+                newMeal.dateCreated = lastModified
 
-				if (!newPost.save(flush: true)) {
-					println "Errors saving picture on post: ${newPost.errors}"
+				if (!newMeal.save(flush: true)) {
+					println "Errors saving picture on meal: ${newMeal.errors}"
 				} else {
 					println "${file.name} is saved ok"
 				}

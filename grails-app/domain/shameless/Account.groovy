@@ -41,7 +41,7 @@ class Account {
 		password = springSecurityService.encodePassword(password)
 	}
 	
-	Set<Post> getPosts() {
-		Post.findAllByAccount(this)
+	Set<Meal> getPosts() {
+		Meal.findAllByAccount(this)
 	}
 }

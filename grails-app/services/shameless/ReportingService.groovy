@@ -6,7 +6,7 @@ class ReportingService {
 
     def badFoodsForUser(String username) {
 
-        def badFoods = Post.withCriteria {
+        def badFoods = Meal.withCriteria {
             createAlias("account", "a")
             and {
                 eq('a.username', username)
@@ -20,7 +20,7 @@ class ReportingService {
 
     def badFoodsCountByUser() {
 
-        def badFoods = Post.withCriteria {
+        def badFoods = Meal.withCriteria {
             createAlias("account", "a")
             eq("badFood", true)
             projections {
