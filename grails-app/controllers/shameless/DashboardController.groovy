@@ -19,7 +19,12 @@ class DashboardController {
     		maxResults(20)
     		order("dateCreated", "desc")
     	}
-    	[ recentMeals : recentMeals ]
+        def badMeals = Meal.withCriteria {
+            eq('badFood', true)
+    		maxResults(5)
+    		order("dateCreated", "desc")
+    	}
+    	[ recentMeals : recentMeals, badMeals : badMeals ]
     	
     }
 
@@ -53,6 +58,11 @@ class DashboardController {
     		order("dateCreated", "desc")
     	}
     	[ recentMeals : recentMeals, badMeals : badMeals ]
+
+    }
+
+    @Secured(['ROLE_USER'])
+    def orig = {
 
     }
 
