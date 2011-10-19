@@ -37,8 +37,12 @@ class MealController {
 			    response.sendError(404)
             }
         } else {
-    	    println "Reading all with: ${params}"
-    	    render Meal.list() as JSON
+            println "Reading all with: ${params}"
+            def recentMeals = Meal.withCriteria {
+                maxResults(20)
+                order("dateCreated", "desc")
+            }
+            render recentMeals as JSON
         }
     }
     

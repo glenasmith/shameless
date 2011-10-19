@@ -16,14 +16,17 @@
             <h2>Recent Eats</h2>
             <ul class="media-grid">
 
-              <g:each var="meal" in="${recentMeals}">
+              <g:each var="meal" in="${recentMeals}" status="i">
                 <li><a href="#">
                   <g:each var="picId" in="${meal.pictureIds}">
+                      <g:if test="${i < 3}">
+                            <span class="label success">New</span>
+                      </g:if>
 
                     <img class="thumbnail"
                          src='<g:createLink controller="dashboard" action="renderImage" id="${picId.id}"/>'
                          title="${meal.status} ${meal.dateCreated} " style="width: 205px; height: 150px;"/>
-                    <input type="checkbox">Bad Food</input>
+
                   </g:each>
                 </a></li>
 

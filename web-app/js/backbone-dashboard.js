@@ -49,8 +49,8 @@ $(function() {
 	        return this;
 	    },
         updateMeal: function() {
-             var newStatus = (this.$(".statusField").val() == "on") ? "true" : "false";
-            console.log("Updating field value to " + newStatus);
+             var newStatus = this.$(".statusField").val();
+             console.log("Updating status to " + newStatus);
 	    	 this.model.set({status: newStatus });
 	    	 this.model.save();
         },
@@ -62,7 +62,7 @@ $(function() {
 	        
 	    },
         toggleBad: function() {
-            var newBad = this.$(".toggleBad").val();
+            var newBad = (this.$(".toggleBad").is(":checked")) ? "true" : "false";
             console.log("Updating badness value to " + newBad);
 	    	 this.model.set({badFood: newBad });
 	    	 this.model.save();

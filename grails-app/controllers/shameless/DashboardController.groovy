@@ -32,7 +32,8 @@ class DashboardController {
     		order("dateCreated", "desc")
     	}
         def badMeals = Meal.withCriteria {
-    		maxResults(3)
+            eq('badFood', true)
+    		maxResults(5)
     		order("dateCreated", "desc")
     	}
     	[ recentMeals : recentMeals, badMeals : badMeals ]
@@ -47,7 +48,8 @@ class DashboardController {
     		order("dateCreated", "desc")
     	}
     	def badMeals = Meal.withCriteria {
-    		maxResults(3)
+            eq('badFood', true)
+    		maxResults(5)
     		order("dateCreated", "desc")
     	}
     	[ recentMeals : recentMeals, badMeals : badMeals ]

@@ -83,7 +83,7 @@
           <a class="brand" href="#">See * Food * Diet</a>
           <ul class="nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">Upload</a></li>
+            <li><a href='<g:createLink controller="dashboard" action="gsp"/>'>Upload</a></li>
             <li><a href="#about">Report</a></li>
             <li><a href="#contact">Account</a></li>
           </ul>
