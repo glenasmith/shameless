@@ -57,9 +57,11 @@
                   </div>
               </bean:withBean>
 
-
-              <g:submitButton name="uploadButton" value="Upload" class="btn primary"/>
               </fieldset>
+
+              <g:submitButton name="uploadButton" value="Upload" class="btn primary large"/>
+
+
 
             </g:uploadForm>
 
