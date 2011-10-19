@@ -90,11 +90,7 @@
                               class="${item.class}">${item.title}</g:link>
                   </li>
               </nav:eachItem>
-              <!--
-              <li class="active"><a href="#">Home</a></li>
-            <li><a href='<g:createLink controller="dashboard" action="gsp"/>'>Upload</a></li>
-            <li><a href="#about">Report</a></li>
-            <li><a href="#contact">Account</a></li>  -->
+
           </ul>
           <sec:ifNotLoggedIn>
           <form action="" class="pull-right">
