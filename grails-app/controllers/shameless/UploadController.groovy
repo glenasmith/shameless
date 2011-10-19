@@ -62,7 +62,7 @@ class UploadCommand {
 
     static constraints = {
         status blank: false
-        picture nullable: false
+        picture nullable: false, blank: false
     }
 
 

@@ -5,11 +5,17 @@ import grails.plugins.springsecurity.Secured
 class DashboardController {
 
     static navigation = [
-		group:'tabs',
-		order:10,
-		title:'Home',
-		action:'gsp',
-		//isVisible: { SpringSecurityUtils.ifAnyGranted("ROLE_USER,ROLE_ADMIN") }
+            [
+                    group: 'tabs',
+                    order: 10,
+                    title: 'Home',
+                    action: 'gsp'],
+            [
+                    group: 'tabs',
+                    order: 11,
+                    title: 'Home (Alt)',
+                    action: 'backbone'
+            ]
 	]
 
     @Secured(['ROLE_USER'])
@@ -62,6 +68,7 @@ class DashboardController {
     }
 
     @Secured(['ROLE_USER'])
+    // old backbone code for testing
     def orig = {
 
     }

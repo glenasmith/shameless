@@ -121,6 +121,7 @@ $(function() {
                 render: function() {
 
                     var mealListUL = this.el
+                    mealListUL.html(""); // clear existing entries for rerender
                     this.collection.each(function (oneMeal) {
                     	var nextMeal = new MealView({model: oneMeal});
                     	var renderedMeal = nextMeal.render().el
