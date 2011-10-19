@@ -15,6 +15,7 @@
         label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
     </style>
     <%--
+    Other useful templates include
     <bean:requiredIndicator> <img src="/images/required-field.png" alt="(!)"> </bean:requiredIndicator>
     <bean:errorTemplate> <div class="fieldError">Ooops! ${message.encodeAsHTML()}</div> </bean:errorTemplate>
     --%>
@@ -50,8 +51,12 @@
                   <bean:field property="longitude" class="number"/>
                   <bean:field property="latitude" class="number"/>
                   <bean:checkBox property="badFood"/>
+                   <bean:label property="pictures"/>
+                  <div class="input">
+                        <input type="file" name="picture" class="required" />
+                  </div>
               </bean:withBean>
-              <input type="file" name="picture" />
+
 
               <g:submitButton name="uploadButton" value="Upload" class="btn primary"/>
               </fieldset>
@@ -63,7 +68,9 @@
         </div>
 
   <r:script>
-  $(".uploadForm").validate();
+      $(document).ready(function(){
+            $(".uploadForm").validate();
+      });
   </r:script>
 
 

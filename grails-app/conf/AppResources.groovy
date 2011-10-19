@@ -23,6 +23,12 @@ modules = {
         resource url:'/js/jquery.validate.js'
     }
 
+    jqPlot {
+        dependsOn 'jquery'
+        resource url:'/css/jquery.jqplot.css'
+        resource url:'/js/jquery.jqplot.js'
+    }
+
     /*
 
     twitterSupport {
