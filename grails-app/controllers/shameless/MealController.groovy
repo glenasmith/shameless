@@ -47,8 +47,8 @@ class MealController {
     	
     	def meal = Meal.get(params.id)
     	if (meal) {
-    		println "New status is ${params.post.status}"
-    		meal.properties['status'] = params.post.status
+    		println "New status is ${params.meal.status}"
+    		meal.properties['status'] = params.meal.status
     		if (meal.save()) {
     			render meal as JSON
     		} else {

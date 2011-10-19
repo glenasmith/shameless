@@ -36,16 +36,23 @@ $(function() {
     	
 	    events: {
 	        "click .delete": "deleteMeal",
-	        "click .edit" : "editMeal"
+	        "click .edit" : "editMeal",
+            "blur .statusField" : "updateMeal"
 	    },
 	    initialize: function () {
-	        _.bindAll(this, "render", "deleteMeal", "editMeal");
+	        _.bindAll(this, "render", "deleteMeal", "editMeal", "updateMeal");
 	    },
 	    render: function () {
 	        var mealHtml = this.template(this.model.toJSON());
 	        $(this.el).append(mealHtml);
 	        return this;
 	    },
+        updateMeal: function() {
+             var newStatus = this.$(".statusField").val();
+            console.log("Updating field value to " + newStatus);
+	    	 this.model.set({status: newStatus });
+	    	 this.model.save();
+        },
 	    deleteMeal: function () {
 	    	var answer = confirm("Are you sure you want to delete this entry? This cannot be undone.");
 	    	if (answer) {
