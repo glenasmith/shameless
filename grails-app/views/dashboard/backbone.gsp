@@ -26,6 +26,18 @@
             <h3>Recent Fails</h3>
             <ul class="media-grid">
 
+                <g:each var="meal" in="${badMeals}">
+                <li><a href="#">
+                  <g:each var="picId" in="${meal.pictureIds}">
+
+                    <img class="thumbnail"
+                         src='<g:createLink controller="dashboard" action="renderImage" id="${picId.id}"/>'
+                         title="${meal.status} ${meal.dateCreated} " style="width: 70px; height: 50px;"/>
+                  </g:each>
+                </a></li>
+
+              </g:each>
+
 
 
             </ul>
