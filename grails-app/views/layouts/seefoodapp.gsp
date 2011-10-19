@@ -86,8 +86,7 @@
 
               <nav:eachItem group="tabs" var="item">
                   <li class="${item.active ? 'active' : ''}">
-                      <g:link controller="${item.controller}" action="${item.action}"
-                              class="${item.class}">${item.title}</g:link>
+                      <g:link controller="${item.controller}" action="${item.action}">${item.title}</g:link>
                   </li>
               </nav:eachItem>
 
