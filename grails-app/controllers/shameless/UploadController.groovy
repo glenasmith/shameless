@@ -22,14 +22,18 @@ class UploadController {
 
     }
 
-    def save = {
+    def save = { UploadCommand uc ->
 
-        def meal = new Meal(params)
+        def meal = new Meal(uc.properties)
         meal.account = springSecurityService.currentUser
+        def picture = new Picture(image: uc.picture)
+        meal.addToPictures(picture)
         if (!meal.validate()) {
+            println meal.errors
             flash.error = "Something went bad in there"
             render(view: "index", model: [ mealInstance : meal ])
         } else {
+            println meal.dump()
             meal.save()
             flash.message = "Saved new Meal in an epic fashion. Upload another?"
         }
@@ -37,4 +41,18 @@ class UploadController {
 
 
     }
+
+
+}
+
+
+class UploadCommand {
+
+    String status
+    String latitude
+    String longitude
+    boolean badFood
+    byte[] picture
+
+
 }

@@ -30,7 +30,7 @@
 
         <g:if test="${flash.error}">
           <div class="alert-message error">
-              <p><strong>Snap!</strong> ${flash.error}.</p>
+              <p><strong>Snap!</strong> ${flash.error}. <g:renderErrors bean="mealInstance"/> </p>
           </div>
         </g:if>
         <g:elseif test="${flash.message}">
@@ -49,9 +49,9 @@
                   <bean:field property="status" label="Why bro?" class="required"/>
                   <bean:field property="longitude" class="number"/>
                   <bean:field property="latitude" class="number"/>
-                  <bean:checkBox name="badFood" property="badFood" class="required"/>
+                  <bean:checkBox property="badFood"/>
               </bean:withBean>
-              <input type="file" name="pictures[0]" />
+              <input type="file" name="picture" />
 
               <g:submitButton name="uploadButton" value="Upload" class="btn primary"/>
               </fieldset>
