@@ -14,7 +14,7 @@ class Meal {
 	Account account
 	
 	Set<String> getPictureIds() {
-		(pictures*.dateCreated).sort { a,b -> a <=> b} // sort in ascending ids
+		pictures.sort { a,b -> a <=> b} // sort in ascending ids
 	}
 	
 	static hasMany = [pictures:Picture]

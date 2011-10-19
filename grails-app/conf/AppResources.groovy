@@ -55,4 +55,10 @@ modules = {
     	resource url:'/js/dashboard.js'
     }
 
+    backboneDashboard {
+    	dependsOn 'backbone,jquery-ui'
+
+    	resource url:'/js/backbone-dashboard.js'
+    }
+
 }

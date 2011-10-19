@@ -15,17 +15,46 @@ class DashboardController {
     @Secured(['ROLE_USER'])
     def index = { 
     	
-    	def recentPosts = Meal.withCriteria {
+    	def recentMeals = Meal.withCriteria {
     		maxResults(20)
     		order("dateCreated", "desc")
     	}
-    	[ recentPosts : recentPosts ]
+    	[ recentMeals : recentMeals ]
     	
     }
+
+
+    @Secured(['ROLE_USER'])
+    def gsp = {
+
+    	def recentMeals = Meal.withCriteria {
+    		maxResults(20)
+    		order("dateCreated", "desc")
+    	}
+        def badMeals = Meal.withCriteria {
+    		maxResults(3)
+    		order("dateCreated", "desc")
+    	}
+    	[ recentMeals : recentMeals, badMeals : badMeals ]
+
+    }
+
+    @Secured(['ROLE_USER'])
+    def backbone = {
+
+    	def recentMeals = Meal.withCriteria {
+    		maxResults(20)
+    		order("dateCreated", "desc")
+    	}
+    	[ recentMeals : recentMeals ]
+
+    }
+
     
     def renderImage = {
     	def picture = Picture.get(params.id)
     	if (picture) {
+            response.setContentType("image/png")
 	        response.setContentLength(picture.image.length)
 	        response.outputStream.write(picture.image)
 	    } else {
