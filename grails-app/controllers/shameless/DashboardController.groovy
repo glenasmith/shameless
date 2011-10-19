@@ -8,7 +8,7 @@ class DashboardController {
 		group:'tabs',
 		order:10,
 		title:'Home',
-		action:'index',
+		action:'gsp',
 		//isVisible: { SpringSecurityUtils.ifAnyGranted("ROLE_USER,ROLE_ADMIN") }
 	]
 

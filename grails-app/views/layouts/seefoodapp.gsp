@@ -73,6 +73,7 @@
     <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
     <g:layoutHead/>
+    <nav:resources override="true"/>
   </head>
 
   <body>
@@ -82,10 +83,18 @@
         <div class="container">
           <a class="brand" href="#">See * Food * Diet</a>
           <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
+
+              <nav:eachItem group="tabs" var="item">
+                  <li class="${item.active ? 'active' : ''}">
+                      <g:link controller="${item.controller}" action="${item.action}"
+                              class="${item.class}">${item.title}</g:link>
+                  </li>
+              </nav:eachItem>
+              <!--
+              <li class="active"><a href="#">Home</a></li>
             <li><a href='<g:createLink controller="dashboard" action="gsp"/>'>Upload</a></li>
             <li><a href="#about">Report</a></li>
-            <li><a href="#contact">Account</a></li>
+            <li><a href="#contact">Account</a></li>  -->
           </ul>
           <sec:ifNotLoggedIn>
           <form action="" class="pull-right">
