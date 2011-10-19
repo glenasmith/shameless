@@ -46,7 +46,11 @@ class DashboardController {
     		maxResults(20)
     		order("dateCreated", "desc")
     	}
-    	[ recentMeals : recentMeals ]
+    	def badMeals = Meal.withCriteria {
+    		maxResults(3)
+    		order("dateCreated", "desc")
+    	}
+    	[ recentMeals : recentMeals, badMeals : badMeals ]
 
     }
 
