@@ -73,6 +73,11 @@
       $(document).ready(function() {
           $(".uploadForm").validate();
           $("#status").rules("add", { required:true, messages: { required:"Help me out here" }  });
+          // Or via i18n...
+          $("#status").rules("add", { required:true, messages: {
+                required:"<g:message code="meal.status.blank.message" default="Help me out, Bro"/>"
+          }  });
+
       });
   </r:script>
 

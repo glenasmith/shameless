@@ -34,7 +34,7 @@ class UploadController {
         meal.account = springSecurityService.currentUser
         def picture = new Picture(image: uc.picture)
         meal.addToPictures(picture)
-        if (!meal.validate()) {
+        if (uc.hasErrors() || !meal.validate()) {
             println meal.errors
             flash.error = "Something went bad in there"
             render(view: "index", model: [ mealInstance : meal ])
@@ -59,6 +59,11 @@ class UploadCommand {
     String longitude
     boolean badFood
     byte[] picture
+
+    static constraints = {
+        status blank: false
+        picture nullable: false
+    }
 
 
 }
