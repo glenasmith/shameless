@@ -70,8 +70,9 @@
         </div>
 
   <r:script>
-      $(document).ready(function(){
-            $(".uploadForm").validate();
+      $(document).ready(function() {
+          $(".uploadForm").validate();
+          $("#status").rules("add", { required:true, messages: { required:"Help me out here" }  });
       });
   </r:script>
 
