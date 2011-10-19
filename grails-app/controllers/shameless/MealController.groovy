@@ -49,6 +49,7 @@ class MealController {
     	if (meal) {
     		println "New status is ${params.meal.status}"
     		meal.properties['status'] = params.meal.status
+            meal.properties['badFood'] = params.meal.badFood
     		if (meal.save()) {
     			render meal as JSON
     		} else {

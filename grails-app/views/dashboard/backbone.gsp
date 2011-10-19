@@ -47,8 +47,9 @@
     <img class="thumbnail"
          src='<g:createLink controller="dashboard" action="renderImage"/>/{{pictures.0.id}}'
          title="{{status}} {{ dateCreated }} " style="width: 205px; height: 150px;"/>
-    <input class="statusField span3" name="status" value="{{ status }}">   <button class="delete btn" name="Delete">Delete</button> <br/>
-    <input type="checkbox">Bad Food</input>
+    <input class="statusField span3" name="status" value="{{ status }}"> <br/>
+    <button class="delete btn" name="Delete">Delete</button>
+    <input class="toggleBad" type="checkbox" {{#if badFood}}CHECKED{{/if}}>Bad Food</input>
 
 </a>
 

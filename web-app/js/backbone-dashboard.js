@@ -37,10 +37,11 @@ $(function() {
 	    events: {
 	        "click .delete": "deleteMeal",
 	        "click .edit" : "editMeal",
+            "click .toggleBad" : "toggleBad",
             "blur .statusField" : "updateMeal"
 	    },
 	    initialize: function () {
-	        _.bindAll(this, "render", "deleteMeal", "editMeal", "updateMeal");
+	        _.bindAll(this, "render", "deleteMeal", "editMeal", "updateMeal", "toggleBad");
 	    },
 	    render: function () {
 	        var mealHtml = this.template(this.model.toJSON());
@@ -48,7 +49,7 @@ $(function() {
 	        return this;
 	    },
         updateMeal: function() {
-             var newStatus = this.$(".statusField").val();
+             var newStatus = (this.$(".statusField").val() == "on") ? "true" : "false";
             console.log("Updating field value to " + newStatus);
 	    	 this.model.set({status: newStatus });
 	    	 this.model.save();
@@ -60,6 +61,12 @@ $(function() {
 	    	}
 	        
 	    },
+        toggleBad: function() {
+            var newBad = this.$(".toggleBad").val();
+            console.log("Updating badness value to " + newBad);
+	    	 this.model.set({badFood: newBad });
+	    	 this.model.save();
+        },
 	    editMeal: function() {
 	    	
 	    	// populate the dialog values
