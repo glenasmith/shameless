@@ -4,12 +4,20 @@
     <meta charset="utf-8">
     <title>Upload</title>
     <meta name="layout" content="seefoodapp"/>
-    <r:require module="twitterLess"/>
+    <r:require module="jqueryValidate"/>
 
     <bean:labelTemplate> <label for="${fieldId}" class="${errorClassToUse}">${label}${required}</label> </bean:labelTemplate>
     <bean:inputTemplate> <div class="clearfix"> ${label} <div class="input">${field}</div> <g:if test="${errors}"><br/>${errors}</g:if> </div></bean:inputTemplate>
+    <bean:textAreaTemplate> <div class="clearfix"> ${label} <div class="input">${field}</div> <g:if test="${errors}"><br/>${errors}</g:if> </div></bean:textAreaTemplate>
+    <bean:checkBoxTemplate> <div class="clearfix"> ${label} <div class="input">${field}</div> <g:if test="${errors}"><br/>${errors}</g:if> </div></bean:checkBoxTemplate>
+
+    <style>
+        label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+    </style>
+    <%--
     <bean:requiredIndicator> <img src="/images/required-field.png" alt="(!)"> </bean:requiredIndicator>
     <bean:errorTemplate> <div class="fieldError">Ooops! ${message.encodeAsHTML()}</div> </bean:errorTemplate>
+    --%>
 
 
   </head>
@@ -34,15 +42,14 @@
         <div class="row">
           <div class="span15">
             <h2>What are you eating?</h2>
-            <g:uploadForm action="save">
+            <g:uploadForm class="uploadForm" action="save" >
               <fieldset>
 
               <bean:withBean beanName="mealInstance">
-
-                  <bean:field property="status" label="Why?"/>
-                  <bean:field property="longitude"/>
-                  <bean:field property="latitude"/>
-                  <bean:checkBox name="badFood" property="badFood" />
+                  <bean:field property="status" label="Why bro?" class="required"/>
+                  <bean:field property="longitude" class="number"/>
+                  <bean:field property="latitude" class="number"/>
+                  <bean:checkBox name="badFood" property="badFood" class="required"/>
               </bean:withBean>
               <input type="file" name="pictures[0]" />
 
@@ -54,6 +61,10 @@
           </div>
 
         </div>
+
+  <r:script>
+  $(".uploadForm").validate();
+  </r:script>
 
 
 

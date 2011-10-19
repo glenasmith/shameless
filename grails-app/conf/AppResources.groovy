@@ -18,6 +18,11 @@ modules = {
         
     }
 
+    jqueryValidate {
+        dependsOn 'jquery'
+        resource url:'/js/jquery.validate.js'
+    }
+
     /*
 
     twitterSupport {
