@@ -22,6 +22,12 @@ class UploadController {
 
     }
 
+     def orig = {
+
+        [ mealInstance : new Meal() ]
+
+    }
+
     def save = { UploadCommand uc ->
 
         def meal = new Meal(uc.properties)
