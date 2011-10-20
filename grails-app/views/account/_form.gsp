@@ -5,6 +5,7 @@
 	<bean:field property="realName"/>
 	<bean:field property="password"/>
 	<bean:field property="enabled"/>
+    <bean:field property="email"/>
 </bean:withBean>
 
 

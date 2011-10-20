@@ -64,14 +64,15 @@
             </ul>
 
             <h3>Visual Fail</h3>
-            <div id="chartdiv" style="height:150px;width:150px; "></div>
+            <div id="chartdiv" style="height:150px;width:150px; ">Put a chart here!!!</div>
           </div>
         </div>
 
-
+  <%--
   <r:script>
       $.jqplot('chartdiv',  [[[1, 2],[3,5.12],[5,13.1],[7,33.6],[9,85.9],[11,219.9]]]);
   </r:script>
+  --%>
 
 
   </body>

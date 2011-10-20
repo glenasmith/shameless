@@ -9,13 +9,8 @@ class DashboardController {
                     group: 'tabs',
                     order: 10,
                     title: 'Home',
-                    action: 'gsp'],
-            [
-                    group: 'tabs',
-                    order: 11,
-                    title: 'Home (Alt)',
-                    action: 'backbone'
-            ]
+                    action: 'gsp']
+
 	]
 
     @Secured(['ROLE_USER'])
