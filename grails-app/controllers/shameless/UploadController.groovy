@@ -12,7 +12,7 @@ class UploadController {
 		group:'tabs',
 		order:20,
 		title:'Upload',
-		action:'index',
+		action:'orig',
 		isVisible: { SpringSecurityUtils.ifAnyGranted("ROLE_USER,ROLE_ADMIN") }
 	]
 

@@ -9,7 +9,7 @@ class DashboardController {
                     group: 'tabs',
                     order: 10,
                     title: 'Home',
-                    action: 'gsp']
+                    action: 'index']
 
 	]
 
