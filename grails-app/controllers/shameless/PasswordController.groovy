@@ -2,16 +2,10 @@ package shameless
 
 class PasswordController {
 
-    def mailService
     def springSecurityService
     def passwordEncoder
 
     def forgottenPassword = {
-
-        // find user
-        // do complex calculation
-        // invoke service to send password with inlined html
-        // Refactor to service with methods for generatePassword
 
        if (params.userid) {
 
