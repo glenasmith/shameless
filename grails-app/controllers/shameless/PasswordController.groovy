@@ -4,6 +4,7 @@ class PasswordController {
 
     def springSecurityService
     def passwordEncoder
+    def mailService
 
     def forgottenPassword = {
 
@@ -32,7 +33,7 @@ class PasswordController {
 					Glen Smith - SeeFoodDiet.com
 					</p>
 		            """
-                sendMail {
+                mailService.sendMail {
                     to account.email
                     subject "Password Reset"
                     body msg
