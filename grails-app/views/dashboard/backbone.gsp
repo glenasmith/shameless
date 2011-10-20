@@ -69,7 +69,8 @@
 
 <script type="text/template" id="detailTemplate">
     <p><image src="${g.createLink(controller: 'dashboard', action:'renderImage')}/{{id}}" title="{{status}}" width=500 height=300/></p>
-	<p>{{ status }} {{ dateCreated }}</p>
+	<h2>{{ status }} <small>{{ dateCreated }}</small></h2>
+    <button id="closeDetail" name="closeDetail" class="btn primary">Close</button>
 </script>
 
 

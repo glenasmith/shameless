@@ -155,11 +155,11 @@ $(function() {
                 template: Handlebars.compile( $("#detailTemplate").html() ),
 
                 events: {
-                    "click #bbRefresh": "add"
+                    "click #closeDetail": "close"
                 },
 
                 initialize: function() {
-                     _.bindAll(this, 'render', 'add');
+                     _.bindAll(this, 'render', 'add', 'close');
 
                 },
 
@@ -171,6 +171,9 @@ $(function() {
 
                 remove: function() {
                 	$(this.el).remove();
+                },
+                close: function() {
+                   mealApp.navigate("", true);
                 },
 
                 add: function() {
@@ -205,7 +208,7 @@ $(function() {
             } else {
                 // we fetched from the cache...
             }
-            var view = new DetailView({ model: detail, el: $("#bbBody") });
+            var view = new DetailView({ model: detail, el: $("#mealList") });
             view.render();
     	}
 	});
@@ -213,7 +216,7 @@ $(function() {
   
 
     // Start the backbone app
-    var postApp = new MealRouter;
+    var mealApp = new MealRouter;
 
 	// And start all the magic....    
     Backbone.history.start();
