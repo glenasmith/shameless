@@ -5,17 +5,19 @@ import grails.plugins.springsecurity.Secured
 
 @Secured(['ROLE_USER'])
 class MealController {
+
+    def springSecurityService
 	
 	// Backbone approach:
-	// create = POST /collection
-	// read = GET /collection[/id]
-	// update = PUT /collection/id
-	// delete = DELETE /collection/id
+	// create = POST /collection  = save() in Grails
+	// read = GET /collection[/id] = show() in Grails
+	// update = PUT /collection/id = update() in Grails
+	// delete = DELETE /collection/id = delete() in Grails
 	//static allowedMethods = [save: "POST", show: "GET", update: "PUT", delete: "DELETE"]
 
     def save = {
     	println "Creating with: ${params}"
-    	def account = Account.findByUsername("admin")
+    	def account = Account.findByUsername(springSecurityService.currentUser.username)
     	def meal = new Meal(params)
     	meal.account = account
     	if (meal.save()) {
@@ -39,6 +41,8 @@ class MealController {
         } else {
             println "Reading all with: ${params}"
             def recentMeals = Meal.withCriteria {
+                createAlias("account", "a")
+                eq("a.username", springSecurityService.currentUser.username)
                 maxResults(20)
                 order("dateCreated", "desc")
             }

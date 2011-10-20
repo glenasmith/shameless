@@ -4,6 +4,8 @@ import grails.plugins.springsecurity.Secured
 
 class DashboardController {
 
+    def springSecurityService
+
     static navigation = [
             [
                     group: 'tabs',
@@ -17,10 +19,14 @@ class DashboardController {
     def index = { 
     	
     	def recentMeals = Meal.withCriteria {
+            createAlias("account", "a")
+            eq("a.username", springSecurityService.currentUser.username)
     		maxResults(20)
     		order("dateCreated", "desc")
     	}
         def badMeals = Meal.withCriteria {
+            createAlias("account", "a")
+            eq("a.username", springSecurityService.currentUser.username)
             eq('badFood', true)
     		maxResults(5)
     		order("dateCreated", "desc")
@@ -34,10 +40,14 @@ class DashboardController {
     def gsp = {
 
     	def recentMeals = Meal.withCriteria {
+            createAlias("account", "a")
+            eq("a.username", springSecurityService.currentUser.username)
     		maxResults(20)
     		order("dateCreated", "desc")
     	}
         def badMeals = Meal.withCriteria {
+            createAlias("account", "a")
+            eq("a.username", springSecurityService.currentUser.username)
             eq('badFood', true)
     		maxResults(5)
     		order("dateCreated", "desc")
@@ -45,6 +55,7 @@ class DashboardController {
     	[ recentMeals : recentMeals, badMeals : badMeals ]
 
     }
+
 
     @Secured(['ROLE_USER'])
     def backbone = {
