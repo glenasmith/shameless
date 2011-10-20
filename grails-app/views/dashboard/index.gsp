@@ -4,7 +4,10 @@
     <meta charset="utf-8">
     <title>Home</title>
     <meta name="layout" content="main"/>
-    <r:require module="jqPlot"/>
+    <%-- <r:require module="jqPlot"/>  --%>
+    <g:javascript src="jquery.js"/>
+    <g:javascript src="jquery.jqplot.js"/>
+    <link rel="stylesheet" type="text/css" href="${g.resource(dir: 'css', file: 'jquery.jqplot.css')}" />
     <style>
         li { display: inline; }
         .leftcol {
@@ -64,9 +67,16 @@
             </ul>
 
             <h3>Visual Fail</h3>
-            <div id="chartdiv" style="height:150px;width:150px; ">Put a chart here!!!</div>
+            <div id="chartdiv" style="height:150px;width:150px; "></div>
           </div>
         </div>
+
+  <script language="JavaScript">
+      $(document).ready(function(){
+            $.jqplot('chartdiv',  [[[1, 2],[3,5.12],[5,13.1],[7,33.6],[9,85.9],[11,219.9]]]);
+      });
+
+  </script>
 
   <%--
   <r:script>
