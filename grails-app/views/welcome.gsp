@@ -17,7 +17,7 @@
 
     <p>We are what you eat! If you've been looking for a <b>simpler</b>, <b>smarter</b> way to stay accountible to your eating plan, you've come to the right place.</p>
 
-    <p><a class="btn primary large">Learn more &raquo;</a></p>
+    <p><a class="btn">Learn more &raquo;</a></p>
   </div>
 
 
