@@ -210,7 +210,7 @@ $(function() {
   
 
     // Start the backbone app
-    var mealApp = new MealRouter;
+     mealApp = new MealRouter;
 
 	// And start all the magic....    
     Backbone.history.start();
