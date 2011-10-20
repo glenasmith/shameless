@@ -4,7 +4,7 @@ class LameNavigationTagLib {
 	
 	def lameNav = {
 		
-		def headings = [ 'Dashboard', 'Post', 'Account']
+		def headings = [ 'Dashboard', 'Upload', 'Account']
 		
 		out << "<div id='tabs'>\n<ul>\n"
 		headings.each { heading ->
