@@ -125,12 +125,6 @@ $(function() {
                     this.collection.each(function (oneMeal) {
                     	var nextMeal = new MealView({model: oneMeal});
                     	var renderedMeal = nextMeal.render().el
-                        if (oneMeal.id == 1) {
-                            console.log("Inspect this:")
-                            console.log(renderedMeal);
-                            console.log("Done");
-                            console.log($(this.el));
-                        }
                         mealListUL.append(renderedMeal);
                 	});
                     return this;
