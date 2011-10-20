@@ -26,7 +26,8 @@
 	</head>
 	<body>
 		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
-        <div class="nav">   <nav:render group="tabs"/>  </div>
+        <div class="nav">   <g:lameNav/>
+        </div>
 		<g:layoutBody/>
 		<r:layoutResources/>
 		<div class="footer" role="contentinfo">&copy; Bytecode Pty Ltd 2011</div>
