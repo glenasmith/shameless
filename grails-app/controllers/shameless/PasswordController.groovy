@@ -38,7 +38,7 @@ class PasswordController {
                     body msg
                 }
                 flash.message = "A new password has been generated and emailed to your account"
-                redirect(controller: 'entries')
+                redirect controller: 'login', action: 'auth'
             } else {
                 flash.message = "Could not locate your account."
             }
