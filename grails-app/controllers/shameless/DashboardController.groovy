@@ -61,10 +61,14 @@ class DashboardController {
     def backbone = {
 
     	def recentMeals = Meal.withCriteria {
+            createAlias("account", "a")
+            eq("a.username", springSecurityService.currentUser.username)
     		maxResults(20)
     		order("dateCreated", "desc")
     	}
     	def badMeals = Meal.withCriteria {
+            createAlias("account", "a")
+            eq("a.username", springSecurityService.currentUser.username)
             eq('badFood', true)
     		maxResults(5)
     		order("dateCreated", "desc")
