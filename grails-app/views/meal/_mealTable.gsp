@@ -1,12 +1,12 @@
-<table id="postlist">
+<table id="mealList">
   <thead><tr><th>Date</th> <th>Meal</th> <th>Bad Food?</th></tr></thead>
-  <g:each in="${postList}" var="post">
+  <g:each in="${mealList}" var="meal">
 
     <tr>
-      <td>${post.dateCreated}</td>
-      <td>${post.status}</td>
+      <td>${meal.dateCreated}</td>
+      <td>${meal.status}</td>
 
-      <g:if test="${post.badFood}">
+      <g:if test="${meal.badFood}">
         <td style="bad">BAD BAD BAD</td>
       </g:if>
       <g:else>
