@@ -4,9 +4,11 @@
     <meta charset="utf-8">
     <title>Home</title>
     <meta name="layout" content="main"/>
-    <%-- <r:require module="jqPlot"/>  --%>
     <g:javascript src="jquery.js"/>
     <g:javascript src="jquery.jqplot.js"/>
+    <g:javascript src="jqplot-plugins/jqplot.barRenderer.min.js"/>
+    <g:javascript src="jqplot-plugins/jqplot.categoryAxisRenderer.min.js"/>
+    <g:javascript src="jqplot-plugins/jqplot.pointLabels.min.js"/>
     <link rel="stylesheet" type="text/css" href="${g.resource(dir: 'css', file: 'jquery.jqplot.css')}" />
     <style>
         li { display: inline; }
