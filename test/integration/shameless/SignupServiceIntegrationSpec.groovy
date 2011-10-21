@@ -19,7 +19,7 @@ class SignupServiceIntegrationSpec extends IntegrationSpec {
         then:
         AccountPricingPlan.count() == 1
         Account.findByUsername('glen')
-
+        result =~ /Account created successfully/
 
     }
 
