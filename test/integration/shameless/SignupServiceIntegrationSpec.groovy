@@ -12,14 +12,15 @@ class SignupServiceIntegrationSpec extends IntegrationSpec {
         def pricingPlan = new PricingPlan(name: "Basic", dollarsPerMonth: 1).save()
         def params = [ username: 'glen', password: 'tester', realName: 'Glen Smith',
                 email: 'glen@bytecode.com.au', pricingPlanId: pricingPlan.id ]
+        def flash = [:]
 
         when:
-        def result = signupService.createAccount(params)
+        signupService.createAccount(params, flash)
 
         then:
         AccountPricingPlan.count() == 1
         Account.findByUsername('glen')
-        result =~ /Account created successfully/
+        flash.message =~ /Account created successfully/
 
     }
 

@@ -4,28 +4,26 @@ class SignupService {
 
     static transactional = true
 
-    def createAccount(def params) {
+    def createAccount(def params, def flash) {
         def account = new Account(params)
-        if (account.validate()) {
-            account.save()
+        if (account.save()) {
             if (params.pricingPlanId) {
-                def pricingPlan = PricingPlan.findById(pricingPlanId)
+                def pricingPlan = PricingPlan.findById(params.pricingPlanId)
                 if (pricingPlan) {
                     AccountPricingPlan app = new AccountPricingPlan(account: account, pricingPlan: pricingPlan)
-                    if (app.validate()) {
-                        app.save()
-                        return "Account created successfully"
+                    if (app.save()) {
+                        flash.message = "Account created successfully"
                     } else {
-                        return "Account failed, duplicate pricing plan"
+                        flash.message = "Account failed, duplicate pricing plan"
                     }
                 } else {
-                    return "Account failed, could not find pricing plan"
+                    flash.message = "Account failed, could not find pricing plan"
                 }
             } else {
-                return "Account failed, bad pricing plan"
+                flash.message = "Account failed, bad pricing plan"
             }
         }  else {
-            return "Invalid Account field"
+            flash.message = "Invalid Account field"
         }
 
     }
