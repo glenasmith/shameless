@@ -1,6 +1,6 @@
 import shameless.*
 
-def imageDir = new File("test/images")
+def imageDir = new File("test/images/small")
 def account = Account.findByUsername("admin")
 if (!account) {
 	throw RuntimeException("Couldn't find a user to import with")
