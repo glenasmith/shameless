@@ -6,6 +6,11 @@ class ReportingService {
 
     def badFoodsForUser(String username) {
 
+
+        /*
+            Tons of actual business logic here
+         */
+
         def badFoods = Meal.withCriteria {
             createAlias("account", "a")
             and {
