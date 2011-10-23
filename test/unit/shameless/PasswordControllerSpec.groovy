@@ -6,14 +6,21 @@ class PasswordControllerSpec extends ControllerSpec {
 
     def "check email is reset on forgotten password"() {
       given:
-      mockDomain(Account, [ new Account(username: 'glen', password: 'help')])
-      controller.params.username = 'glen'
+        mockDomain(Account, [new Account(username: 'glen', email: 'glen@bytecode.com.au')])
+        controller.params.userid = 'glen'
+//        controller.passwordService = [ generatePassword : { "sssss "},
+//                                        sendForgottenEmail : { newPw, account -> } ]
+//        boolean emailWasCalled = false
+        controller.mailService = [ sendMail : { args ->  }]
 
-      when:
-      def model = controller.forgottenPassword()
+        when:
+        def model = controller.forgottenPassword()
 
-      then:
-      controller.flash.message == "Could not locate your account."
+        then:
+        controller.flash.message == "A new password has been generated and emailed to your account"
+        controller.redirectArgs.controller == 'login'
+        controller.redirectArgs.action== 'auth'
+//        emailWasCalled
     }
 
     def "test our new command object love"() {
