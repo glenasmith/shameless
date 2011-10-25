@@ -37,4 +37,20 @@ grails.project.dependency.resolution = {
             excludes "release" // uses an older version
         }
 	}
+
+}
+
+coverage {
+    enabledByDefault = false
+    exclusions = [
+            '**/migrations/**',
+    ]
+}
+
+codenarc.reports = {
+
+   CodenarcHtmlReport('html') {                  // Report type is 'html'
+        outputFile = 'target/CodeNarc-Report.html'
+        title = 'Codenarc Report'
+    }
 }

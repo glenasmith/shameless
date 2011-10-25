@@ -6,6 +6,7 @@
 *.ipr
 .eprj
 *.log
+*.ser
 .idea
 .settings
 .project
