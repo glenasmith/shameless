@@ -36,14 +36,14 @@ modules = {
 
     }
 
-    backbone {
+   backbone {
         dependsOn 'jquery'
 
-        resource url: '/js/json2.js' // for old browsers
-        resource url: '/js/underscore-min.js'
-        resource url: '/js/backbone.js'
+        resource url: '/js/json2.js', disposition: 'head' // for old browsers
+        resource url: '/js/underscore-min.js', disposition: 'head'
+        resource url: '/js/backbone.js', disposition: 'head'
         //resource url:'/js/mustache.js'
-        resource url: '/js/handlebars.1.0.0.beta.3.js'
+        resource url: '/js/handlebars.1.0.0.beta.3.js', disposition: 'head'
     }
 
     dashboard {
