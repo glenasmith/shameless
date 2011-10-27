@@ -24,12 +24,12 @@ class ReportingServiceIntegrationSpec extends IntegrationSpec {
     }
 
 // A nicer way of sparking the test data above...
-//fixtureLoader.load {
-//    glen(Account, username: 'glen', email: 'glen@bytecode.com.au', realName: 'Glen', password: 'hiya')
-//    post1(Post, account: glen, status: 'Cake was awesome', badFood: true)
-//    post2(Post, account: glen, status: 'Veggies soup for lunch', badFood: false)
-//    post3(Post, account: glen, status: 'Pizza was very nice', badFood: true)
-//}
+fixtureLoader.load {
+    glen(Account, username: 'glen', email: 'glen@bytecode.com.au', realName: 'Glen', password: 'hiya')
+    post1(Post, account: glen, status: 'Cake was awesome', badFood: true)
+    post2(Post, account: glen, status: 'Veggies soup for lunch', badFood: false)
+    post3(Post, account: glen, status: 'Pizza was very nice', badFood: true)
+}
 
 
     def "bad foods count correctly by user"() {
