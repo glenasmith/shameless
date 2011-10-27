@@ -23,9 +23,9 @@ class BootStrap {
         }
 
         if (PricingPlan.count() == 0) {
-            assert new PricingPlan(name: 'Basic', dollarsPerMonth: 0.0)
-            assert new PricingPlan(name: 'Premium', dollarsPerMonth: 10.0)
-            assert new PricingPlan(name: 'Enterprise', dollarsPerMonth: 10000.0)
+            assert new PricingPlan(name: 'Basic', dollarsPerMonth: 0.0).save(flush:true)
+            assert new PricingPlan(name: 'Premium', dollarsPerMonth: 10.0).save(flush:true)
+            assert new PricingPlan(name: 'Enterprise', dollarsPerMonth: 10000.0).save(flush:true)
         }
 
 
