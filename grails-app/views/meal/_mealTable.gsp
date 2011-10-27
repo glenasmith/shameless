@@ -1,6 +1,6 @@
 <table id="mealList">
   <thead><tr><th>Date</th> <th>Meal</th> <th>Bad Food?</th></tr></thead>
-  <g:each in="${mealList}" var="meal">
+  <g:each in="${meals}" var="meal">
 
     <tr>
       <td>${meal.dateCreated}</td>

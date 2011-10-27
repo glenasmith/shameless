@@ -5,7 +5,7 @@ import grails.plugin.spock.*
 
 class LameNavigationTagLibSpec extends IntegrationSpec {
 
-    def "feature method"() {
+    def "Check lame navigation generation is generating links"() {
 
         given:
         def lameNavTag = new LameNavigationTagLib()
@@ -14,7 +14,7 @@ class LameNavigationTagLibSpec extends IntegrationSpec {
         def lameOut = lameNavTag.lameNav()
 
         then:
-        lameOut.toString().startsWith("<div id='tabs'>")
-
+        lameOut.startsWith("<div id='tabs'>")
+        (lameOut =~ /a href='/).count == 3
     }
 }
